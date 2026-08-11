@@ -13,7 +13,6 @@
 <body>
 <div id="root"></div>
 <script>
-var _reactJsxDevRuntime = require("react/jsx-dev-runtime");
 const {
   useState,
   useMemo,
@@ -27,7 +26,7 @@ function makeIcon(children) {
     size = 16,
     className = ""
   }) {
-    return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("svg", {
+    return /*#__PURE__*/React.createElement("svg", {
       xmlns: "http://www.w3.org/2000/svg",
       width: size,
       height: size,
@@ -37,114 +36,93 @@ function makeIcon(children) {
       strokeWidth: "2",
       strokeLinecap: "round",
       strokeLinejoin: "round",
-      className: className,
-      children: children
-    }, void 0, false);
+      className: className
+    }, children);
   };
 }
-const ArrowRight = makeIcon(/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(_reactJsxDevRuntime.Fragment, {
-  children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M5 12h14"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "m12 5 7 7-7 7"
-  }, void 0, false)]
-}, void 0, true));
-const ArrowLeft = makeIcon(/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(_reactJsxDevRuntime.Fragment, {
-  children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "m12 19-7-7 7-7"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M19 12H5"
-  }, void 0, false)]
-}, void 0, true));
-const Check = makeIcon(/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
+const ArrowRight = makeIcon(/*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+  d: "M5 12h14"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "m12 5 7 7-7 7"
+})));
+const ArrowLeft = makeIcon(/*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+  d: "m12 19-7-7 7-7"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M19 12H5"
+})));
+const Check = makeIcon(/*#__PURE__*/React.createElement("path", {
   d: "M20 6 9 17l-5-5"
-}, void 0, false));
-const X = makeIcon(/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(_reactJsxDevRuntime.Fragment, {
-  children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M18 6 6 18"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "m6 6 12 12"
-  }, void 0, false)]
-}, void 0, true));
-const ChevronDown = makeIcon(/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
+}));
+const X = makeIcon(/*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+  d: "M18 6 6 18"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "m6 6 12 12"
+})));
+const ChevronDown = makeIcon(/*#__PURE__*/React.createElement("path", {
   d: "m6 9 6 6 6-6"
-}, void 0, false));
-const ChevronUp = makeIcon(/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
+}));
+const ChevronUp = makeIcon(/*#__PURE__*/React.createElement("path", {
   d: "m18 15-6-6-6 6"
-}, void 0, false));
-const Search = makeIcon(/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(_reactJsxDevRuntime.Fragment, {
-  children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("circle", {
-    cx: "11",
-    cy: "11",
-    r: "8"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "m21 21-4.3-4.3"
-  }, void 0, false)]
-}, void 0, true));
-const Upload = makeIcon(/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(_reactJsxDevRuntime.Fragment, {
-  children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("polyline", {
-    points: "17 8 12 3 7 8"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("line", {
-    x1: "12",
-    x2: "12",
-    y1: "3",
-    y2: "15"
-  }, void 0, false)]
-}, void 0, true));
-const Undo2 = makeIcon(/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(_reactJsxDevRuntime.Fragment, {
-  children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M9 14 4 9l5-5"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M4 9h10.5a5.5 5.5 0 0 1 0 11H10"
-  }, void 0, false)]
-}, void 0, true));
-const RotateCcw = makeIcon(/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(_reactJsxDevRuntime.Fragment, {
-  children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M3 3v5h5"
-  }, void 0, false)]
-}, void 0, true));
-const Trophy = makeIcon(/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(_reactJsxDevRuntime.Fragment, {
-  children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M6 9H4.5a2.5 2.5 0 0 1 0-5H6"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M18 9h1.5a2.5 2.5 0 0 0 0-5H18"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M4 22h16"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M18 2H6v7a6 6 0 0 0 12 0V2Z"
-  }, void 0, false)]
-}, void 0, true));
-const Footprints = makeIcon(/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(_reactJsxDevRuntime.Fragment, {
-  children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z"
-  }, void 0, false)]
-}, void 0, true));
-const Ruler = makeIcon(/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(_reactJsxDevRuntime.Fragment, {
-  children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "m14.5 12.5 2-2"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "m11.5 9.5 2-2"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "m8.5 6.5 2-2"
-  }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
-    d: "m17.5 15.5 2-2"
-  }, void 0, false)]
-}, void 0, true));
-const Sparkles = makeIcon(/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("path", {
+}));
+const Search = makeIcon(/*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("circle", {
+  cx: "11",
+  cy: "11",
+  r: "8"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "m21 21-4.3-4.3"
+})));
+const Upload = makeIcon(/*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+  d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+}), /*#__PURE__*/React.createElement("polyline", {
+  points: "17 8 12 3 7 8"
+}), /*#__PURE__*/React.createElement("line", {
+  x1: "12",
+  x2: "12",
+  y1: "3",
+  y2: "15"
+})));
+const Undo2 = makeIcon(/*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+  d: "M9 14 4 9l5-5"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M4 9h10.5a5.5 5.5 0 0 1 0 11H10"
+})));
+const RotateCcw = makeIcon(/*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+  d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M3 3v5h5"
+})));
+const Trophy = makeIcon(/*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+  d: "M6 9H4.5a2.5 2.5 0 0 1 0-5H6"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M18 9h1.5a2.5 2.5 0 0 0 0-5H18"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M4 22h16"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M18 2H6v7a6 6 0 0 0 12 0V2Z"
+})));
+const Footprints = makeIcon(/*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+  d: "M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z"
+})));
+const Ruler = makeIcon(/*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+  d: "M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "m14.5 12.5 2-2"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "m11.5 9.5 2-2"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "m8.5 6.5 2-2"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "m17.5 15.5 2-2"
+})));
+const Sparkles = makeIcon(/*#__PURE__*/React.createElement("path", {
   d: "m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"
-}, void 0, false));
+}));
 
 /* Real persistence: localStorage works on any web host (unlike inside the Claude sandbox) */
 const LS = {
@@ -1222,79 +1200,75 @@ function ShoeFitApp() {
     return SHOES.filter(s => s.pace === pace).filter(s => !q || `${s.brand} ${s.model}`.toLowerCase().includes(q));
   }, [pace, query]);
   const tagged = Object.values(labels).filter(Boolean).length;
-  return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "mx-auto max-w-2xl p-4 text-slate-800",
     style: {
       fontFamily: "ui-sans-serif, system-ui, sans-serif"
-    },
-    children: [screen !== "landing" && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Stepper, {
-      current: screen
-    }, void 0, false), screen === "landing" && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Landing, {
-      onStart: () => setScreen("pace"),
-      canResume: !!foot,
-      onResume: () => setScreen("recs"),
-      onReset: resetAll
-    }, void 0, false), screen === "pace" && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(PaceChoice, {
-      selected: pace,
-      onSelect: setPace,
-      runnerPace: runnerPace,
-      setRunnerPace: setRunnerPace,
-      onBack: () => setScreen("landing"),
-      onContinue: () => setScreen("measure")
-    }, void 0, false), screen === "measure" && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Measure, {
-      onBack: () => setScreen("pace"),
-      onDone: p => {
-        setFoot(p);
-        setScreen("library");
-      }
-    }, void 0, false), screen === "library" && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Library, {
-      pace: pace,
-      setPace: setPace,
-      shoes: shoes,
-      labels: labels,
-      setLabel: setLabel,
-      tagged: tagged,
-      query: query,
-      setQuery: setQuery,
-      onBack: () => setScreen("measure"),
-      onNext: () => setScreen("recs"),
-      openDetail: setDetailShoe
-    }, void 0, false), screen === "recs" && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Recs, {
-      foot: foot,
-      labels: labels,
-      pace: pace,
-      runnerPace: runnerPace,
-      onBack: () => setScreen("library"),
-      openDetail: setDetailShoe
-    }, void 0, false), detailShoe && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(ShoeDetail, {
-      shoe: detailShoe,
-      foot: foot,
-      labels: labels,
-      onClose: () => setDetailShoe(null)
-    }, void 0, false)]
-  }, void 0, true);
+    }
+  }, screen !== "landing" && /*#__PURE__*/React.createElement(Stepper, {
+    current: screen
+  }), screen === "landing" && /*#__PURE__*/React.createElement(Landing, {
+    onStart: () => setScreen("pace"),
+    canResume: !!foot,
+    onResume: () => setScreen("recs"),
+    onReset: resetAll
+  }), screen === "pace" && /*#__PURE__*/React.createElement(PaceChoice, {
+    selected: pace,
+    onSelect: setPace,
+    runnerPace: runnerPace,
+    setRunnerPace: setRunnerPace,
+    onBack: () => setScreen("landing"),
+    onContinue: () => setScreen("measure")
+  }), screen === "measure" && /*#__PURE__*/React.createElement(Measure, {
+    onBack: () => setScreen("pace"),
+    onDone: p => {
+      setFoot(p);
+      setScreen("library");
+    }
+  }), screen === "library" && /*#__PURE__*/React.createElement(Library, {
+    pace: pace,
+    setPace: setPace,
+    shoes: shoes,
+    labels: labels,
+    setLabel: setLabel,
+    tagged: tagged,
+    query: query,
+    setQuery: setQuery,
+    onBack: () => setScreen("measure"),
+    onNext: () => setScreen("recs"),
+    openDetail: setDetailShoe
+  }), screen === "recs" && /*#__PURE__*/React.createElement(Recs, {
+    foot: foot,
+    labels: labels,
+    pace: pace,
+    runnerPace: runnerPace,
+    onBack: () => setScreen("library"),
+    openDetail: setDetailShoe
+  }), detailShoe && /*#__PURE__*/React.createElement(ShoeDetail, {
+    shoe: detailShoe,
+    foot: foot,
+    labels: labels,
+    onClose: () => setDetailShoe(null)
+  }));
 }
 function Stepper({
   current
 }) {
   const idx = FLOW.indexOf(current);
-  return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-    className: "mb-6 flex items-center gap-2 text-xs",
-    children: FLOW.map((s, i) => /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-      className: "flex items-center gap-2",
-      children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-        className: `flex items-center gap-1.5 ${i === idx ? "font-medium text-slate-800" : i < idx ? "text-slate-500" : "text-slate-300"}`,
-        children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-          className: `grid h-5 w-5 place-items-center rounded-full text-[11px] ${i === idx ? "bg-slate-800 text-white" : i < idx ? "bg-slate-200 text-slate-600" : "bg-slate-100 text-slate-400"}`,
-          children: i < idx ? /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Check, {
-            size: 12
-          }, void 0, false) : i + 1
-        }, void 0, false), FLOW_LABEL[s]]
-      }, void 0, true), i < FLOW.length - 1 && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-        className: "h-px w-4 bg-slate-200"
-      }, void 0, false)]
-    }, s, true))
-  }, void 0, false);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "mb-6 flex items-center gap-2 text-xs"
+  }, FLOW.map((s, i) => /*#__PURE__*/React.createElement("span", {
+    key: s,
+    className: "flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: `flex items-center gap-1.5 ${i === idx ? "font-medium text-slate-800" : i < idx ? "text-slate-500" : "text-slate-300"}`
+  }, /*#__PURE__*/React.createElement("span", {
+    className: `grid h-5 w-5 place-items-center rounded-full text-[11px] ${i === idx ? "bg-slate-800 text-white" : i < idx ? "bg-slate-200 text-slate-600" : "bg-slate-100 text-slate-400"}`
+  }, i < idx ? /*#__PURE__*/React.createElement(Check, {
+    size: 12
+  }) : i + 1), FLOW_LABEL[s]), i < FLOW.length - 1 && /*#__PURE__*/React.createElement("span", {
+    className: "h-px w-4 bg-slate-200"
+  }))));
 }
 
 /* ---------- landing ---------- */
@@ -1304,95 +1278,82 @@ function Landing({
   onResume,
   onReset
 }) {
-  return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-    className: "rounded-2xl border border-slate-200 bg-white px-6 py-12 text-center sm:px-10 sm:py-16",
-    children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "mb-6 inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-500",
-      children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Footprints, {
-        size: 14,
-        className: "text-blue-600"
-      }, void 0, false), " Foot-first shoe matching"]
-    }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("h1", {
-      className: "mx-auto max-w-lg text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl",
-      children: ["Buy the ", /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-        className: "text-orange-500",
-        children: "right"
-      }, void 0, false), " shoe every time"]
-    }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-      className: "mx-auto mt-4 max-w-sm text-base text-slate-500",
-      children: "Measure your foot from a paper trace, tell us which shoes have worked, and get picks that actually fit."
-    }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "mx-auto mt-8 max-w-xs",
-      "aria-hidden": "true",
-      children: /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("svg", {
-        viewBox: "0 0 320 24",
-        className: "w-full",
-        children: Array.from({
-          length: 33
-        }).map((_, i) => /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("line", {
-          x1: i * 10,
-          y1: "24",
-          x2: i * 10,
-          y2: i % 5 === 0 ? 6 : 14,
-          stroke: "#cbd5e1",
-          strokeWidth: "1.5"
-        }, i, false))
-      }, void 0, false)
-    }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "mt-8 flex flex-col items-center gap-3",
-      children: [canResume && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-        onClick: onResume,
-        className: "inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-blue-500",
-        children: ["Pick up where you left off ", /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(ArrowRight, {
-          size: 16
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-        onClick: onStart,
-        className: `inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition ${canResume ? "border border-slate-300 text-slate-700 hover:bg-slate-50" : "bg-blue-600 text-white hover:bg-blue-500"}`,
-        children: [canResume ? "Start a new run-through" : "Get started", " ", /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(ArrowRight, {
-          size: 16
-        }, void 0, false)]
-      }, void 0, true), canResume && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-        onClick: onReset,
-        className: "text-xs font-medium text-slate-400 hover:text-slate-600",
-        children: "Reset saved data"
-      }, void 0, false)]
-    }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "mt-10 flex items-center justify-center gap-6 text-xs text-slate-400",
-      children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(LandStep, {
-        icon: /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Ruler, {
-          size: 15
-        }, void 0, false),
-        label: "Measure"
-      }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-        className: "h-px w-6 bg-slate-200"
-      }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(LandStep, {
-        icon: /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Check, {
-          size: 15
-        }, void 0, false),
-        label: "Rate"
-      }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-        className: "h-px w-6 bg-slate-200"
-      }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(LandStep, {
-        icon: /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Sparkles, {
-          size: 15
-        }, void 0, false),
-        label: "Match"
-      }, void 0, false)]
-    }, void 0, true)]
-  }, void 0, true);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "rounded-2xl border border-slate-200 bg-white px-6 py-12 text-center sm:px-10 sm:py-16"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mb-6 inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-500"
+  }, /*#__PURE__*/React.createElement(Footprints, {
+    size: 14,
+    className: "text-blue-600"
+  }), " Foot-first shoe matching"), /*#__PURE__*/React.createElement("h1", {
+    className: "mx-auto max-w-lg text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl"
+  }, "Buy the ", /*#__PURE__*/React.createElement("span", {
+    className: "text-orange-500"
+  }, "right"), " shoe every time"), /*#__PURE__*/React.createElement("p", {
+    className: "mx-auto mt-4 max-w-sm text-base text-slate-500"
+  }, "Measure your foot from a paper trace, tell us which shoes have worked, and get picks that actually fit."), /*#__PURE__*/React.createElement("div", {
+    className: "mx-auto mt-8 max-w-xs",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 320 24",
+    className: "w-full"
+  }, Array.from({
+    length: 33
+  }).map((_, i) => /*#__PURE__*/React.createElement("line", {
+    key: i,
+    x1: i * 10,
+    y1: "24",
+    x2: i * 10,
+    y2: i % 5 === 0 ? 6 : 14,
+    stroke: "#cbd5e1",
+    strokeWidth: "1.5"
+  })))), /*#__PURE__*/React.createElement("div", {
+    className: "mt-8 flex flex-col items-center gap-3"
+  }, canResume && /*#__PURE__*/React.createElement("button", {
+    onClick: onResume,
+    className: "inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-blue-500"
+  }, "Pick up where you left off ", /*#__PURE__*/React.createElement(ArrowRight, {
+    size: 16
+  })), /*#__PURE__*/React.createElement("button", {
+    onClick: onStart,
+    className: `inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition ${canResume ? "border border-slate-300 text-slate-700 hover:bg-slate-50" : "bg-blue-600 text-white hover:bg-blue-500"}`
+  }, canResume ? "Start a new run-through" : "Get started", " ", /*#__PURE__*/React.createElement(ArrowRight, {
+    size: 16
+  })), canResume && /*#__PURE__*/React.createElement("button", {
+    onClick: onReset,
+    className: "text-xs font-medium text-slate-400 hover:text-slate-600"
+  }, "Reset saved data")), /*#__PURE__*/React.createElement("div", {
+    className: "mt-10 flex items-center justify-center gap-6 text-xs text-slate-400"
+  }, /*#__PURE__*/React.createElement(LandStep, {
+    icon: /*#__PURE__*/React.createElement(Ruler, {
+      size: 15
+    }),
+    label: "Measure"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "h-px w-6 bg-slate-200"
+  }), /*#__PURE__*/React.createElement(LandStep, {
+    icon: /*#__PURE__*/React.createElement(Check, {
+      size: 15
+    }),
+    label: "Rate"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "h-px w-6 bg-slate-200"
+  }), /*#__PURE__*/React.createElement(LandStep, {
+    icon: /*#__PURE__*/React.createElement(Sparkles, {
+      size: 15
+    }),
+    label: "Match"
+  })));
 }
 function LandStep({
   icon,
   label
 }) {
-  return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-    className: "flex flex-col items-center gap-1",
-    children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-      className: "grid h-8 w-8 place-items-center rounded-full bg-slate-100 text-slate-500",
-      children: icon
-    }, void 0, false), label]
-  }, void 0, true);
+  return /*#__PURE__*/React.createElement("span", {
+    className: "flex flex-col items-center gap-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "grid h-8 w-8 place-items-center rounded-full bg-slate-100 text-slate-500"
+  }, icon), label);
 }
 
 /* ---------- pace ---------- */
@@ -1405,92 +1366,68 @@ function PaceChoice({
   onContinue
 }) {
   const rulesOutCarbon = runnerPace > CARBON_CUTOFF;
-  return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-    children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-      onClick: onBack,
-      className: "mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700",
-      children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(ArrowLeft, {
-        size: 15
-      }, void 0, false), " Back"]
-    }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("h2", {
-      className: "text-2xl font-bold tracking-tight text-slate-900",
-      children: "What are these shoes for?"
-    }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-      className: "mt-1 text-sm text-slate-500",
-      children: "This filters out shoes built for a different job. You can change it anytime."
-    }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "mt-6 grid gap-3 sm:grid-cols-2",
-      children: Object.entries(PACE).map(([key, p]) => {
-        const active = selected === key;
-        return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-          onClick: () => onSelect(key),
-          className: `rounded-2xl border p-5 text-left transition ${active ? "border-blue-600 bg-blue-50 ring-1 ring-blue-600" : "border-slate-200 bg-white hover:border-slate-300"}`,
-          children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-            className: "flex items-center justify-between",
-            children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-              className: "text-lg font-semibold text-slate-900",
-              children: p.label
-            }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-              className: `grid h-5 w-5 place-items-center rounded-full border ${active ? "border-blue-600 bg-blue-600" : "border-slate-300"}`,
-              children: active && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Check, {
-                size: 12,
-                className: "text-white"
-              }, void 0, false)
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-            className: "mt-1 text-sm text-slate-500",
-            children: p.blurb
-          }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-            className: "mt-3 text-xs font-medium text-slate-400",
-            children: p.maps
-          }, void 0, false)]
-        }, key, true);
-      })
-    }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "mt-6 rounded-2xl border border-slate-200 bg-white p-5",
-      children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "flex flex-wrap items-baseline justify-between gap-2",
-        children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("label", {
-          className: "text-sm font-medium text-slate-800",
-          children: "Roughly how fast do you run these?"
-        }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-          className: "tabular-nums text-sm text-slate-900",
-          children: [fmtPace(runnerPace, "km"), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-            className: "text-xs text-slate-400",
-            children: " /km"
-          }, void 0, false), " · ", fmtPace(runnerPace, "mi"), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-            className: "text-xs text-slate-400",
-            children: " /mi"
-          }, void 0, false)]
-        }, void 0, true)]
-      }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("input", {
-        type: "range",
-        min: 180,
-        max: 480,
-        step: 5,
-        value: runnerPace,
-        onChange: e => setRunnerPace(+e.target.value),
-        className: "mt-3 w-full accent-blue-600"
-      }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "mt-1 flex justify-between text-xs text-slate-400",
-        children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-          children: "faster"
-        }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-          children: "slower"
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-        className: `mt-3 text-xs ${rulesOutCarbon ? "text-amber-700" : "text-slate-500"}`,
-        children: rulesOutCarbon ? "Slower than 4:20/km — carbon-plated race shoes are ruled out as overkill for this pace." : "Quick enough that carbon-plated race shoes stay in the mix."
-      }, void 0, false)]
-    }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-      onClick: onContinue,
-      disabled: !selected,
-      className: `mt-6 inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition ${selected ? "bg-blue-600 text-white hover:bg-blue-500" : "cursor-not-allowed bg-slate-100 text-slate-400"}`,
-      children: ["Continue ", /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(ArrowRight, {
-        size: 16
-      }, void 0, false)]
-    }, void 0, true)]
-  }, void 0, true);
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+    onClick: onBack,
+    className: "mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700"
+  }, /*#__PURE__*/React.createElement(ArrowLeft, {
+    size: 15
+  }), " Back"), /*#__PURE__*/React.createElement("h2", {
+    className: "text-2xl font-bold tracking-tight text-slate-900"
+  }, "What are these shoes for?"), /*#__PURE__*/React.createElement("p", {
+    className: "mt-1 text-sm text-slate-500"
+  }, "This filters out shoes built for a different job. You can change it anytime."), /*#__PURE__*/React.createElement("div", {
+    className: "mt-6 grid gap-3 sm:grid-cols-2"
+  }, Object.entries(PACE).map(([key, p]) => {
+    const active = selected === key;
+    return /*#__PURE__*/React.createElement("button", {
+      key: key,
+      onClick: () => onSelect(key),
+      className: `rounded-2xl border p-5 text-left transition ${active ? "border-blue-600 bg-blue-50 ring-1 ring-blue-600" : "border-slate-200 bg-white hover:border-slate-300"}`
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "flex items-center justify-between"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "text-lg font-semibold text-slate-900"
+    }, p.label), /*#__PURE__*/React.createElement("span", {
+      className: `grid h-5 w-5 place-items-center rounded-full border ${active ? "border-blue-600 bg-blue-600" : "border-slate-300"}`
+    }, active && /*#__PURE__*/React.createElement(Check, {
+      size: 12,
+      className: "text-white"
+    }))), /*#__PURE__*/React.createElement("p", {
+      className: "mt-1 text-sm text-slate-500"
+    }, p.blurb), /*#__PURE__*/React.createElement("p", {
+      className: "mt-3 text-xs font-medium text-slate-400"
+    }, p.maps));
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "mt-6 rounded-2xl border border-slate-200 bg-white p-5"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap items-baseline justify-between gap-2"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "text-sm font-medium text-slate-800"
+  }, "Roughly how fast do you run these?"), /*#__PURE__*/React.createElement("span", {
+    className: "tabular-nums text-sm text-slate-900"
+  }, fmtPace(runnerPace, "km"), /*#__PURE__*/React.createElement("span", {
+    className: "text-xs text-slate-400"
+  }, " /km"), " · ", fmtPace(runnerPace, "mi"), /*#__PURE__*/React.createElement("span", {
+    className: "text-xs text-slate-400"
+  }, " /mi"))), /*#__PURE__*/React.createElement("input", {
+    type: "range",
+    min: 180,
+    max: 480,
+    step: 5,
+    value: runnerPace,
+    onChange: e => setRunnerPace(+e.target.value),
+    className: "mt-3 w-full accent-blue-600"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "mt-1 flex justify-between text-xs text-slate-400"
+  }, /*#__PURE__*/React.createElement("span", null, "faster"), /*#__PURE__*/React.createElement("span", null, "slower")), /*#__PURE__*/React.createElement("p", {
+    className: `mt-3 text-xs ${rulesOutCarbon ? "text-amber-700" : "text-slate-500"}`
+  }, rulesOutCarbon ? "Slower than 4:20/km — carbon-plated race shoes are ruled out as overkill for this pace." : "Quick enough that carbon-plated race shoes stay in the mix.")), /*#__PURE__*/React.createElement("button", {
+    onClick: onContinue,
+    disabled: !selected,
+    className: `mt-6 inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition ${selected ? "bg-blue-600 text-white hover:bg-blue-500" : "cursor-not-allowed bg-slate-100 text-slate-400"}`
+  }, "Continue ", /*#__PURE__*/React.createElement(ArrowRight, {
+    size: 16
+  })));
 }
 
 /* ---------- measure ---------- */
@@ -1570,222 +1507,172 @@ function Measure({
     } : SAMPLE_FOOT;
     onDone(profile);
   };
-  return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-    className: "select-none",
-    children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-      onClick: onBack,
-      className: "mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700",
-      children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(ArrowLeft, {
-        size: 15
-      }, void 0, false), " Back"]
-    }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("h2", {
-      className: "text-2xl font-bold tracking-tight text-slate-900",
-      children: "Measure your foot"
-    }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-      className: "mt-1 text-sm text-slate-500",
-      children: "Trace your foot on A4, photograph it from above, then tap the points."
-    }, void 0, false), phase === "upload" && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "mt-4 rounded-xl border border-slate-200 bg-white p-6",
-      children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "flex flex-wrap gap-3",
-        children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("label", {
-          className: "inline-flex cursor-pointer items-center gap-2 rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700",
-          children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Upload, {
-            size: 16
-          }, void 0, false), " Upload a photo", /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("input", {
-            type: "file",
-            accept: "image/*",
-            className: "hidden",
-            onChange: onFile
-          }, void 0, false)]
-        }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-          onClick: () => choose(demoDataUri()),
-          className: "inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50",
-          children: "Use demo image"
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-        onClick: () => onDone(SAMPLE_FOOT),
-        className: "mt-3 text-xs font-medium text-slate-400 hover:text-slate-600",
-        children: "Skip and use a sample foot →"
-      }, void 0, false)]
-    }, void 0, true), imageSrc && phase !== "upload" && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(_reactJsxDevRuntime.Fragment, {
-      children: [phase === "tapping" && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "mb-3 mt-4 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3",
-        children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-          className: "flex items-center justify-between gap-3",
-          children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-            className: "text-sm",
-            children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-              className: "text-slate-500",
-              children: ["Step ", stepIdx + 1, " of ", STEPS.length, " — tap the "]
-            }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-              className: `font-medium ${currentStep.kind === "corner" ? "text-blue-600" : "text-rose-500"}`,
-              children: currentStep.label
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-            className: "flex shrink-0 gap-1",
-            children: STEPS.map((s, i) => /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-              className: `h-1.5 w-1.5 rounded-full ${i < stepIdx ? s.kind === "corner" ? "bg-blue-500" : "bg-rose-400" : i === stepIdx ? "bg-slate-800" : "bg-slate-300"}`
-            }, s.key, false))
-          }, void 0, false)]
-        }, void 0, true), currentStep.key === "tl" && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-          className: "mt-1 text-xs text-slate-500",
-          children: "Corners set scale and straighten the photo. Order: TL to TR to BR to BL."
-        }, void 0, false), currentStep.key === "heel" && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-          className: "mt-1 text-xs text-slate-500",
-          children: "Now the foot: heel and toe give length; ball points give width."
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        ref: wrapRef,
-        onPointerDown: onTap,
-        className: `relative mt-4 w-full overflow-hidden rounded-xl border border-slate-200 ${phase === "tapping" ? "cursor-crosshair" : ""}`,
-        style: {
-          touchAction: "none"
-        },
-        children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("img", {
-          src: imageSrc,
-          alt: "Foot traced on A4",
-          className: "block w-full",
-          draggable: false
-        }, void 0, false), pts.map(p => {
-          const c = ["tl", "tr", "br", "bl"].includes(p.key);
-          return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-            className: "pointer-events-none absolute -translate-x-1/2 -translate-y-1/2",
-            style: {
-              left: `${p.nx * 100}%`,
-              top: `${p.ny * 100}%`
-            },
-            children: /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-              className: `block rounded-full ring-2 ring-white ${c ? "bg-blue-500" : "bg-rose-500"}`,
-              style: {
-                width: 14,
-                height: 14
-              }
-            }, void 0, false)
-          }, p.key, false);
-        })]
-      }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "mt-3 flex flex-wrap gap-2",
-        children: [(pts.length > 0 || phase !== "tapping") && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-          onClick: undo,
-          className: "inline-flex items-center gap-1.5 rounded-lg border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50",
-          children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Undo2, {
-            size: 15
-          }, void 0, false), " Undo"]
-        }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-          onClick: () => {
-            setPts([]);
-            setPhase("tapping");
-          },
-          className: "inline-flex items-center gap-1.5 rounded-lg border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50",
-          children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(RotateCcw, {
-            size: 15
-          }, void 0, false), " Reset"]
-        }, void 0, true)]
-      }, void 0, true)]
-    }, void 0, true), phase === "height" && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "mt-4 rounded-xl border border-slate-200 bg-white p-5",
-      children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("h3", {
-        className: "text-base font-medium",
-        children: "How much vertical room do your toes need?"
-      }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-        className: "mt-0.5 text-sm text-slate-500",
-        children: "A flat trace can't measure height, so this one's self-reported."
-      }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "mt-4 grid gap-2",
-        children: HEIGHT_OPTS.map(o => /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-          onClick: () => setHeight(o.key),
-          className: `rounded-lg border p-3 text-left transition ${height === o.key ? "border-slate-800 bg-slate-50" : "border-slate-200 hover:border-slate-300"}`,
-          children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-            className: "flex items-center gap-2",
-            children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-              className: `grid h-4 w-4 place-items-center rounded-full border ${height === o.key ? "border-slate-800 bg-slate-800" : "border-slate-300"}`,
-              children: height === o.key && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Check, {
-                size: 11,
-                className: "text-white"
-              }, void 0, false)
-            }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-              className: "text-sm font-medium",
-              children: o.title
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-            className: "mt-1 pl-6 text-xs text-slate-500",
-            children: o.body
-          }, void 0, false)]
-        }, o.key, true))
-      }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-        onClick: () => setShowHelp(s => !s),
-        className: "mt-3 inline-flex items-center gap-1 text-xs font-medium text-slate-500 hover:text-slate-700",
-        children: [showHelp ? /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(ChevronUp, {
-          size: 14
-        }, void 0, false) : /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(ChevronDown, {
-          size: 14
-        }, void 0, false), " Not sure?"]
-      }, void 0, true), showHelp && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "mt-2 rounded-lg bg-slate-50 p-3 text-xs leading-relaxed text-slate-600",
-        children: "Picture your current shoes: pressure on the toe tops or tight laces means High. Loads of clearance means Low. Neither stands out means Normal."
-      }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "mt-4 flex gap-2",
-        children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-          onClick: () => setPhase("results"),
-          className: "rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700",
-          children: "See measurements"
-        }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-          onClick: undo,
-          className: "rounded-lg border border-slate-300 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50",
-          children: "Back"
-        }, void 0, false)]
-      }, void 0, true)]
-    }, void 0, true), phase === "results" && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "mt-4 space-y-4",
-      children: result?.error ? /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-800",
-        children: "The corner taps were too close together to compute a scale. Reset and tap the four corners more precisely."
-      }, void 0, false) : /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(_reactJsxDevRuntime.Fragment, {
-        children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-          className: "rounded-xl border border-slate-200 bg-white p-5",
-          children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("h3", {
-            className: "mb-3 text-base font-medium",
-            children: "Your foot"
-          }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-            className: "grid grid-cols-3 gap-3",
-            children: [["Length", result.length], ["Ball width", result.ballW], ["Toe width", result.toeW]].map(([k, v]) => /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-              className: "rounded-lg bg-slate-50 p-3",
-              children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-                className: "text-xs text-slate-500",
-                children: k
-              }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-                className: "mt-0.5 text-lg font-medium tabular-nums",
-                children: [r1(v), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-                  className: "ml-0.5 text-xs font-normal text-slate-400",
-                  children: "mm"
-                }, void 0, false)]
-              }, void 0, true)]
-            }, k, true))
-          }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-            className: "mt-3 text-xs text-slate-400",
-            children: ["Toe height preference: ", /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-              className: "capitalize text-slate-600",
-              children: height
-            }, void 0, false), " · approx size EU ", result.eu]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-          className: "flex gap-2",
-          children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-            onClick: finish,
-            className: "inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-500",
-            children: ["Use these measurements ", /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(ArrowRight, {
-              size: 16
-            }, void 0, false)]
-          }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-            onClick: undo,
-            className: "rounded-lg border border-slate-300 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50",
-            children: "Back"
-          }, void 0, false)]
-        }, void 0, true)]
-      }, void 0, true)
-    }, void 0, false)]
-  }, void 0, true);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "select-none"
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: onBack,
+    className: "mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700"
+  }, /*#__PURE__*/React.createElement(ArrowLeft, {
+    size: 15
+  }), " Back"), /*#__PURE__*/React.createElement("h2", {
+    className: "text-2xl font-bold tracking-tight text-slate-900"
+  }, "Measure your foot"), /*#__PURE__*/React.createElement("p", {
+    className: "mt-1 text-sm text-slate-500"
+  }, "Trace your foot on A4, photograph it from above, then tap the points."), phase === "upload" && /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 rounded-xl border border-slate-200 bg-white p-6"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-3"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "inline-flex cursor-pointer items-center gap-2 rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700"
+  }, /*#__PURE__*/React.createElement(Upload, {
+    size: 16
+  }), " Upload a photo", /*#__PURE__*/React.createElement("input", {
+    type: "file",
+    accept: "image/*",
+    className: "hidden",
+    onChange: onFile
+  })), /*#__PURE__*/React.createElement("button", {
+    onClick: () => choose(demoDataUri()),
+    className: "inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+  }, "Use demo image")), /*#__PURE__*/React.createElement("button", {
+    onClick: () => onDone(SAMPLE_FOOT),
+    className: "mt-3 text-xs font-medium text-slate-400 hover:text-slate-600"
+  }, "Skip and use a sample foot →")), imageSrc && phase !== "upload" && /*#__PURE__*/React.createElement(React.Fragment, null, phase === "tapping" && /*#__PURE__*/React.createElement("div", {
+    className: "mb-3 mt-4 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center justify-between gap-3"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "text-sm"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-500"
+  }, "Step ", stepIdx + 1, " of ", STEPS.length, " — tap the "), /*#__PURE__*/React.createElement("span", {
+    className: `font-medium ${currentStep.kind === "corner" ? "text-blue-600" : "text-rose-500"}`
+  }, currentStep.label)), /*#__PURE__*/React.createElement("div", {
+    className: "flex shrink-0 gap-1"
+  }, STEPS.map((s, i) => /*#__PURE__*/React.createElement("span", {
+    key: s.key,
+    className: `h-1.5 w-1.5 rounded-full ${i < stepIdx ? s.kind === "corner" ? "bg-blue-500" : "bg-rose-400" : i === stepIdx ? "bg-slate-800" : "bg-slate-300"}`
+  })))), currentStep.key === "tl" && /*#__PURE__*/React.createElement("p", {
+    className: "mt-1 text-xs text-slate-500"
+  }, "Corners set scale and straighten the photo. Order: TL to TR to BR to BL."), currentStep.key === "heel" && /*#__PURE__*/React.createElement("p", {
+    className: "mt-1 text-xs text-slate-500"
+  }, "Now the foot: heel and toe give length; ball points give width.")), /*#__PURE__*/React.createElement("div", {
+    ref: wrapRef,
+    onPointerDown: onTap,
+    className: `relative mt-4 w-full overflow-hidden rounded-xl border border-slate-200 ${phase === "tapping" ? "cursor-crosshair" : ""}`,
+    style: {
+      touchAction: "none"
+    }
+  }, /*#__PURE__*/React.createElement("img", {
+    src: imageSrc,
+    alt: "Foot traced on A4",
+    className: "block w-full",
+    draggable: false
+  }), pts.map(p => {
+    const c = ["tl", "tr", "br", "bl"].includes(p.key);
+    return /*#__PURE__*/React.createElement("span", {
+      key: p.key,
+      className: "pointer-events-none absolute -translate-x-1/2 -translate-y-1/2",
+      style: {
+        left: `${p.nx * 100}%`,
+        top: `${p.ny * 100}%`
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      className: `block rounded-full ring-2 ring-white ${c ? "bg-blue-500" : "bg-rose-500"}`,
+      style: {
+        width: 14,
+        height: 14
+      }
+    }));
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "mt-3 flex flex-wrap gap-2"
+  }, (pts.length > 0 || phase !== "tapping") && /*#__PURE__*/React.createElement("button", {
+    onClick: undo,
+    className: "inline-flex items-center gap-1.5 rounded-lg border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50"
+  }, /*#__PURE__*/React.createElement(Undo2, {
+    size: 15
+  }), " Undo"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      setPts([]);
+      setPhase("tapping");
+    },
+    className: "inline-flex items-center gap-1.5 rounded-lg border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50"
+  }, /*#__PURE__*/React.createElement(RotateCcw, {
+    size: 15
+  }), " Reset"))), phase === "height" && /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 rounded-xl border border-slate-200 bg-white p-5"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "text-base font-medium"
+  }, "How much vertical room do your toes need?"), /*#__PURE__*/React.createElement("p", {
+    className: "mt-0.5 text-sm text-slate-500"
+  }, "A flat trace can't measure height, so this one's self-reported."), /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 grid gap-2"
+  }, HEIGHT_OPTS.map(o => /*#__PURE__*/React.createElement("button", {
+    key: o.key,
+    onClick: () => setHeight(o.key),
+    className: `rounded-lg border p-3 text-left transition ${height === o.key ? "border-slate-800 bg-slate-50" : "border-slate-200 hover:border-slate-300"}`
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: `grid h-4 w-4 place-items-center rounded-full border ${height === o.key ? "border-slate-800 bg-slate-800" : "border-slate-300"}`
+  }, height === o.key && /*#__PURE__*/React.createElement(Check, {
+    size: 11,
+    className: "text-white"
+  })), /*#__PURE__*/React.createElement("span", {
+    className: "text-sm font-medium"
+  }, o.title)), /*#__PURE__*/React.createElement("p", {
+    className: "mt-1 pl-6 text-xs text-slate-500"
+  }, o.body)))), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setShowHelp(s => !s),
+    className: "mt-3 inline-flex items-center gap-1 text-xs font-medium text-slate-500 hover:text-slate-700"
+  }, showHelp ? /*#__PURE__*/React.createElement(ChevronUp, {
+    size: 14
+  }) : /*#__PURE__*/React.createElement(ChevronDown, {
+    size: 14
+  }), " Not sure?"), showHelp && /*#__PURE__*/React.createElement("div", {
+    className: "mt-2 rounded-lg bg-slate-50 p-3 text-xs leading-relaxed text-slate-600"
+  }, "Picture your current shoes: pressure on the toe tops or tight laces means High. Loads of clearance means Low. Neither stands out means Normal."), /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 flex gap-2"
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setPhase("results"),
+    className: "rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700"
+  }, "See measurements"), /*#__PURE__*/React.createElement("button", {
+    onClick: undo,
+    className: "rounded-lg border border-slate-300 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
+  }, "Back"))), phase === "results" && /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 space-y-4"
+  }, result?.error ? /*#__PURE__*/React.createElement("div", {
+    className: "rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-800"
+  }, "The corner taps were too close together to compute a scale. Reset and tap the four corners more precisely.") : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "rounded-xl border border-slate-200 bg-white p-5"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "mb-3 text-base font-medium"
+  }, "Your foot"), /*#__PURE__*/React.createElement("div", {
+    className: "grid grid-cols-3 gap-3"
+  }, [["Length", result.length], ["Ball width", result.ballW], ["Toe width", result.toeW]].map(([k, v]) => /*#__PURE__*/React.createElement("div", {
+    key: k,
+    className: "rounded-lg bg-slate-50 p-3"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-xs text-slate-500"
+  }, k), /*#__PURE__*/React.createElement("div", {
+    className: "mt-0.5 text-lg font-medium tabular-nums"
+  }, r1(v), /*#__PURE__*/React.createElement("span", {
+    className: "ml-0.5 text-xs font-normal text-slate-400"
+  }, "mm"))))), /*#__PURE__*/React.createElement("p", {
+    className: "mt-3 text-xs text-slate-400"
+  }, "Toe height preference: ", /*#__PURE__*/React.createElement("span", {
+    className: "capitalize text-slate-600"
+  }, height), " · approx size EU ", result.eu)), /*#__PURE__*/React.createElement("div", {
+    className: "flex gap-2"
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: finish,
+    className: "inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-500"
+  }, "Use these measurements ", /*#__PURE__*/React.createElement(ArrowRight, {
+    size: 16
+  })), /*#__PURE__*/React.createElement("button", {
+    onClick: undo,
+    className: "rounded-lg border border-slate-300 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
+  }, "Back")))));
 }
 
 /* ---------- library ---------- */
@@ -1802,102 +1689,80 @@ function Library({
   onNext,
   openDetail
 }) {
-  return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-    children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-      onClick: onBack,
-      className: "mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700",
-      children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(ArrowLeft, {
-        size: 15
-      }, void 0, false), " Back"]
-    }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("h2", {
-      className: "text-2xl font-bold tracking-tight text-slate-900",
-      children: "Your shoe history"
-    }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-      className: "mt-1 text-sm text-slate-500",
-      children: "Rate shoes you've worn — the more detail, the sharper your matches. Tap a name for its full spec."
-    }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "mt-4 inline-flex rounded-lg border border-slate-200 bg-white p-1 text-sm",
-      children: Object.entries(PACE).map(([key, p]) => /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-        onClick: () => setPace(key),
-        className: `rounded-md px-3 py-1.5 font-medium transition ${pace === key ? "bg-slate-800 text-white" : "text-slate-500 hover:text-slate-700"}`,
-        children: p.label
-      }, key, false))
-    }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "relative mt-4",
-      children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Search, {
-        size: 16,
-        className: "pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-      }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("input", {
-        value: query,
-        onChange: e => setQuery(e.target.value),
-        placeholder: "Search brand or model",
-        className: "w-full rounded-lg border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm outline-none focus:border-slate-400"
-      }, void 0, false)]
-    }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "mt-4 space-y-2",
-      children: [shoes.map(s => {
-        const label = labels[s.id] || {};
-        const rated = Object.keys(label).length > 0;
-        return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-          className: `rounded-xl border bg-white p-3 ${rated ? "border-slate-300" : "border-slate-200"}`,
-          children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-            onClick: () => openDetail(s),
-            className: "text-left",
-            children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-              className: "text-sm font-semibold text-slate-900 hover:underline",
-              children: [s.brand, " ", s.model]
-            }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-              className: "mt-1 flex flex-wrap gap-1.5 text-xs text-slate-500",
-              children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Chip, {
-                children: [s.heelStack, " mm stack"]
-              }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Chip, {
-                children: [s.weight, " g"]
-              }, void 0, true)]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-            className: "mt-3 grid gap-2 sm:grid-cols-2",
-            children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(RatePicker, {
-              label: "Fit",
-              value: label.fit,
-              opts: FIT_OPTS,
-              onChange: v => setLabel(s.id, "fit", v)
-            }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(RatePicker, {
-              label: "Comfort",
-              value: label.feel,
-              opts: FEEL_OPTS,
-              onChange: v => setLabel(s.id, "feel", v)
-            }, void 0, false)]
-          }, void 0, true)]
-        }, s.id, true);
-      }), shoes.length === 0 && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "rounded-xl border border-dashed border-slate-300 p-8 text-center text-sm text-slate-400",
-        children: "No shoes match that search."
-      }, void 0, false)]
-    }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-4",
-      children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-        className: "text-sm text-slate-500",
-        children: [tagged, " shoe", tagged === 1 ? "" : "s", " rated", /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-          className: "block text-xs text-slate-400",
-          children: "Saved on this device"
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-        onClick: onNext,
-        className: "inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-500",
-        children: ["See my matches ", /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(ArrowRight, {
-          size: 16
-        }, void 0, false)]
-      }, void 0, true)]
-    }, void 0, true)]
-  }, void 0, true);
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+    onClick: onBack,
+    className: "mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700"
+  }, /*#__PURE__*/React.createElement(ArrowLeft, {
+    size: 15
+  }), " Back"), /*#__PURE__*/React.createElement("h2", {
+    className: "text-2xl font-bold tracking-tight text-slate-900"
+  }, "Your shoe history"), /*#__PURE__*/React.createElement("p", {
+    className: "mt-1 text-sm text-slate-500"
+  }, "Rate shoes you've worn — the more detail, the sharper your matches. Tap a name for its full spec."), /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 inline-flex rounded-lg border border-slate-200 bg-white p-1 text-sm"
+  }, Object.entries(PACE).map(([key, p]) => /*#__PURE__*/React.createElement("button", {
+    key: key,
+    onClick: () => setPace(key),
+    className: `rounded-md px-3 py-1.5 font-medium transition ${pace === key ? "bg-slate-800 text-white" : "text-slate-500 hover:text-slate-700"}`
+  }, p.label))), /*#__PURE__*/React.createElement("div", {
+    className: "relative mt-4"
+  }, /*#__PURE__*/React.createElement(Search, {
+    size: 16,
+    className: "pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+  }), /*#__PURE__*/React.createElement("input", {
+    value: query,
+    onChange: e => setQuery(e.target.value),
+    placeholder: "Search brand or model",
+    className: "w-full rounded-lg border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm outline-none focus:border-slate-400"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 space-y-2"
+  }, shoes.map(s => {
+    const label = labels[s.id] || {};
+    const rated = Object.keys(label).length > 0;
+    return /*#__PURE__*/React.createElement("div", {
+      key: s.id,
+      className: `rounded-xl border bg-white p-3 ${rated ? "border-slate-300" : "border-slate-200"}`
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: () => openDetail(s),
+      className: "text-left"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "text-sm font-semibold text-slate-900 hover:underline"
+    }, s.brand, " ", s.model), /*#__PURE__*/React.createElement("div", {
+      className: "mt-1 flex flex-wrap gap-1.5 text-xs text-slate-500"
+    }, /*#__PURE__*/React.createElement(Chip, null, s.heelStack, " mm stack"), /*#__PURE__*/React.createElement(Chip, null, s.weight, " g"))), /*#__PURE__*/React.createElement("div", {
+      className: "mt-3 grid gap-2 sm:grid-cols-2"
+    }, /*#__PURE__*/React.createElement(RatePicker, {
+      label: "Fit",
+      value: label.fit,
+      opts: FIT_OPTS,
+      onChange: v => setLabel(s.id, "fit", v)
+    }), /*#__PURE__*/React.createElement(RatePicker, {
+      label: "Comfort",
+      value: label.feel,
+      opts: FEEL_OPTS,
+      onChange: v => setLabel(s.id, "feel", v)
+    })));
+  }), shoes.length === 0 && /*#__PURE__*/React.createElement("div", {
+    className: "rounded-xl border border-dashed border-slate-300 p-8 text-center text-sm text-slate-400"
+  }, "No shoes match that search.")), /*#__PURE__*/React.createElement("div", {
+    className: "mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-4"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-sm text-slate-500"
+  }, tagged, " shoe", tagged === 1 ? "" : "s", " rated", /*#__PURE__*/React.createElement("span", {
+    className: "block text-xs text-slate-400"
+  }, "Saved on this device")), /*#__PURE__*/React.createElement("button", {
+    onClick: onNext,
+    className: "inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-500"
+  }, "See my matches ", /*#__PURE__*/React.createElement(ArrowRight, {
+    size: 16
+  }))));
 }
 function Chip({
   children
 }) {
-  return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-    className: "rounded bg-slate-100 px-1.5 py-0.5",
-    children: children
-  }, void 0, false);
+  return /*#__PURE__*/React.createElement("span", {
+    className: "rounded bg-slate-100 px-1.5 py-0.5"
+  }, children);
 }
 function RatePicker({
   label,
@@ -1906,24 +1771,20 @@ function RatePicker({
   onChange
 }) {
   const negative = value && value !== "just_right";
-  return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("label", {
-    className: "flex items-center gap-2 text-xs",
-    children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-      className: "w-14 shrink-0 text-slate-500",
-      children: label
-    }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("select", {
-      value: value || "",
-      onChange: e => onChange(e.target.value),
-      className: `min-w-0 flex-1 rounded-lg border px-2 py-1.5 text-sm outline-none ${value === "just_right" ? "border-green-500 bg-green-50 text-green-700" : negative ? "border-rose-400 bg-rose-50 text-rose-600" : "border-slate-200 text-slate-600"}`,
-      children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("option", {
-        value: "",
-        children: "Rate…"
-      }, void 0, false), opts.map(o => /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("option", {
-        value: o.v,
-        children: o.t
-      }, o.v, false))]
-    }, void 0, true)]
-  }, void 0, true);
+  return /*#__PURE__*/React.createElement("label", {
+    className: "flex items-center gap-2 text-xs"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "w-14 shrink-0 text-slate-500"
+  }, label), /*#__PURE__*/React.createElement("select", {
+    value: value || "",
+    onChange: e => onChange(e.target.value),
+    className: `min-w-0 flex-1 rounded-lg border px-2 py-1.5 text-sm outline-none ${value === "just_right" ? "border-green-500 bg-green-50 text-green-700" : negative ? "border-rose-400 bg-rose-50 text-rose-600" : "border-slate-200 text-slate-600"}`
+  }, /*#__PURE__*/React.createElement("option", {
+    value: ""
+  }, "Rate…"), opts.map(o => /*#__PURE__*/React.createElement("option", {
+    key: o.v,
+    value: o.v
+  }, o.t))));
 }
 
 /* ---------- shoe detail ---------- */
@@ -1943,72 +1804,56 @@ function ShoeDetail({
   const fit = foot ? fitInfo(foot, shoe, cal) : null;
   const feel = feelInfo(shoe, cal);
   const suits = fit ? [...fit.reasons, ...feel.reasons] : [];
-  return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "fixed inset-0 z-50 flex items-center justify-center p-4",
     style: {
       backgroundColor: "rgba(15,23,42,0.45)"
     },
+    onClick: onClose
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-full max-w-md overflow-y-auto rounded-2xl bg-white p-5 shadow-xl",
+    style: {
+      maxHeight: "85vh"
+    },
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between gap-3"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "text-xs font-medium text-slate-400"
+  }, PACE[shoe.pace].label), /*#__PURE__*/React.createElement("h3", {
+    className: "text-lg font-semibold text-slate-900"
+  }, shoe.brand, " ", shoe.model)), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
-    children: /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "w-full max-w-md overflow-y-auto rounded-2xl bg-white p-5 shadow-xl",
-      style: {
-        maxHeight: "85vh"
-      },
-      onClick: e => e.stopPropagation(),
-      children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "flex items-start justify-between gap-3",
-        children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-          children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-            className: "text-xs font-medium text-slate-400",
-            children: PACE[shoe.pace].label
-          }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("h3", {
-            className: "text-lg font-semibold text-slate-900",
-            children: [shoe.brand, " ", shoe.model]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-          onClick: onClose,
-          className: "rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600",
-          children: /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(X, {
-            size: 18
-          }, void 0, false)
-        }, void 0, false)]
-      }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3",
-        children: spec.map(([k, v]) => /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-          className: "rounded-lg bg-slate-50 p-2.5",
-          children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-            className: "text-xs text-slate-500",
-            children: k
-          }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-            className: "text-sm font-medium text-slate-800",
-            children: v
-          }, void 0, false)]
-        }, k, true))
-      }, void 0, false), fit ? /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "mt-4",
-        children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-          className: "mb-2 text-sm font-medium text-slate-700",
-          children: "How it suits you"
-        }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-          className: "flex flex-wrap gap-1.5",
-          children: suits.map((rs, j) => /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-            className: `inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs ${rs.ok ? "bg-green-50 text-green-700" : "bg-rose-50 text-rose-600"}`,
-            children: [rs.ok ? /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Check, {
-              size: 11
-            }, void 0, false) : /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(X, {
-              size: 11
-            }, void 0, false), " ", rs.text]
-          }, j, true))
-        }, void 0, false)]
-      }, void 0, true) : /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-        className: "mt-4 text-xs text-slate-400",
-        children: "Measure your foot to see how this one fits you."
-      }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-        className: "mt-4 text-xs text-slate-400",
-        children: "Seed values styled after RunRepeat's fields."
-      }, void 0, false)]
-    }, void 0, true)
-  }, void 0, false);
+    className: "rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+  }, /*#__PURE__*/React.createElement(X, {
+    size: 18
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3"
+  }, spec.map(([k, v]) => /*#__PURE__*/React.createElement("div", {
+    key: k,
+    className: "rounded-lg bg-slate-50 p-2.5"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-xs text-slate-500"
+  }, k), /*#__PURE__*/React.createElement("div", {
+    className: "text-sm font-medium text-slate-800"
+  }, v)))), fit ? /*#__PURE__*/React.createElement("div", {
+    className: "mt-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mb-2 text-sm font-medium text-slate-700"
+  }, "How it suits you"), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-1.5"
+  }, suits.map((rs, j) => /*#__PURE__*/React.createElement("span", {
+    key: j,
+    className: `inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs ${rs.ok ? "bg-green-50 text-green-700" : "bg-rose-50 text-rose-600"}`
+  }, rs.ok ? /*#__PURE__*/React.createElement(Check, {
+    size: 11
+  }) : /*#__PURE__*/React.createElement(X, {
+    size: 11
+  }), " ", rs.text)))) : /*#__PURE__*/React.createElement("p", {
+    className: "mt-4 text-xs text-slate-400"
+  }, "Measure your foot to see how this one fits you."), /*#__PURE__*/React.createElement("p", {
+    className: "mt-4 text-xs text-slate-400"
+  }, "Seed values styled after RunRepeat's fields.")));
 }
 
 /* ---------- recommendations ---------- */
@@ -2025,111 +1870,86 @@ function Recs({
   const [showRejected, setShowRejected] = useState(false);
   const recommended = recs.filter(r => r.fitScore >= 0.6 && !r.paceRuledOut);
   const rejected = recs.filter(r => r.fitScore < 0.6 || r.paceRuledOut);
-  return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-    children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-      onClick: onBack,
-      className: "mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700",
-      children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(ArrowLeft, {
-        size: 15
-      }, void 0, false), " Back"]
-    }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("h2", {
-      className: "text-2xl font-bold tracking-tight text-slate-900",
-      children: "Your matches"
-    }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("p", {
-      className: "mt-1 text-sm text-slate-500",
-      children: "Shoes that fit your foot first, ranked by feel from the ones you rated. Tap any shoe for the full breakdown."
-    }, void 0, false), !hasFeel && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800",
-      children: "Ranked on fit only so far. Tag a few shoes as \"Fits me\" back in your history to personalise the order by feel."
-    }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "mt-4 space-y-3",
-      children: [recommended.map((r, i) => /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: `rounded-xl border bg-white p-4 ${i === 0 ? "border-blue-300 ring-1 ring-blue-200" : "border-slate-200"}`,
-        children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-          className: "flex items-start justify-between gap-3",
-          children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-            children: [i === 0 && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-              className: "mb-1 inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700",
-              children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Trophy, {
-                size: 12
-              }, void 0, false), " Best match"]
-            }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-              onClick: () => openDetail(r.shoe),
-              className: "text-left text-sm font-semibold text-slate-900 hover:underline",
-              children: [r.shoe.brand, " ", r.shoe.model]
-            }, void 0, true)]
-          }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-            className: "text-right",
-            children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-              className: "text-lg font-semibold tabular-nums text-slate-900",
-              children: [Math.round(r.overall * 100), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-                className: "text-xs font-normal text-slate-400",
-                children: "%"
-              }, void 0, false)]
-            }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-              className: "text-xs text-slate-400",
-              children: "match"
-            }, void 0, false)]
-          }, void 0, true)]
-        }, void 0, true), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-          className: "mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-100",
-          children: /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-            className: "h-full rounded-full bg-blue-500",
-            style: {
-              width: `${Math.round(r.overall * 100)}%`
-            }
-          }, void 0, false)
-        }, void 0, false), /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-          className: "mt-3 flex flex-wrap gap-1.5",
-          children: r.reasons.map((rs, j) => /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-            className: `inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs ${rs.ok ? "bg-green-50 text-green-700" : "bg-rose-50 text-rose-600"}`,
-            children: [rs.ok ? /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(Check, {
-              size: 11
-            }, void 0, false) : /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(X, {
-              size: 11
-            }, void 0, false), " ", rs.text]
-          }, j, true))
-        }, void 0, false)]
-      }, r.shoe.id, true)), recs.length === 0 && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "rounded-xl border border-dashed border-slate-300 p-8 text-center text-sm text-slate-400",
-        children: "No candidates in this pace. Try the other branch."
-      }, void 0, false), recs.length > 0 && recommended.length === 0 && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "rounded-xl border border-dashed border-slate-300 p-6 text-center text-sm text-slate-500",
-        children: "None of these clear your foot's width. See what got filtered out below, or try the other pace."
-      }, void 0, false)]
-    }, void 0, true), rejected.length > 0 && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-      className: "mt-5 border-t border-slate-100 pt-4",
-      children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-        onClick: () => setShowRejected(s => !s),
-        className: "inline-flex items-center gap-1 text-sm font-medium text-slate-500 hover:text-slate-700",
-        children: [showRejected ? /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(ChevronUp, {
-          size: 15
-        }, void 0, false) : /*#__PURE__*/_reactJsxDevRuntime.jsxDEV(ChevronDown, {
-          size: 15
-        }, void 0, false), " Not your fit (", rejected.length, ")"]
-      }, void 0, true), showRejected && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-        className: "mt-3 space-y-2",
-        children: rejected.map(r => {
-          const bad = r.reasons.find(x => !x.ok);
-          return /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("div", {
-            className: "flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-slate-50 p-3",
-            children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV("button", {
-              onClick: () => openDetail(r.shoe),
-              className: "text-left text-sm font-medium text-slate-600 hover:underline",
-              children: [r.shoe.brand, " ", r.shoe.model]
-            }, void 0, true), bad && /*#__PURE__*/_reactJsxDevRuntime.jsxDEV("span", {
-              className: "inline-flex items-center gap-1 rounded-full bg-rose-50 px-2 py-0.5 text-xs text-rose-600",
-              children: [/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(X, {
-                size: 11
-              }, void 0, false), " ", bad.text]
-            }, void 0, true)]
-          }, r.shoe.id, true);
-        })
-      }, void 0, false)]
-    }, void 0, true)]
-  }, void 0, true);
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+    onClick: onBack,
+    className: "mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700"
+  }, /*#__PURE__*/React.createElement(ArrowLeft, {
+    size: 15
+  }), " Back"), /*#__PURE__*/React.createElement("h2", {
+    className: "text-2xl font-bold tracking-tight text-slate-900"
+  }, "Your matches"), /*#__PURE__*/React.createElement("p", {
+    className: "mt-1 text-sm text-slate-500"
+  }, "Shoes that fit your foot first, ranked by feel from the ones you rated. Tap any shoe for the full breakdown."), !hasFeel && /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800"
+  }, "Ranked on fit only so far. Tag a few shoes as \"Fits me\" back in your history to personalise the order by feel."), /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 space-y-3"
+  }, recommended.map((r, i) => /*#__PURE__*/React.createElement("div", {
+    key: r.shoe.id,
+    className: `rounded-xl border bg-white p-4 ${i === 0 ? "border-blue-300 ring-1 ring-blue-200" : "border-slate-200"}`
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between gap-3"
+  }, /*#__PURE__*/React.createElement("div", null, i === 0 && /*#__PURE__*/React.createElement("div", {
+    className: "mb-1 inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700"
+  }, /*#__PURE__*/React.createElement(Trophy, {
+    size: 12
+  }), " Best match"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => openDetail(r.shoe),
+    className: "text-left text-sm font-semibold text-slate-900 hover:underline"
+  }, r.shoe.brand, " ", r.shoe.model)), /*#__PURE__*/React.createElement("div", {
+    className: "text-right"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-lg font-semibold tabular-nums text-slate-900"
+  }, Math.round(r.overall * 100), /*#__PURE__*/React.createElement("span", {
+    className: "text-xs font-normal text-slate-400"
+  }, "%")), /*#__PURE__*/React.createElement("div", {
+    className: "text-xs text-slate-400"
+  }, "match"))), /*#__PURE__*/React.createElement("div", {
+    className: "mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-100"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "h-full rounded-full bg-blue-500",
+    style: {
+      width: `${Math.round(r.overall * 100)}%`
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "mt-3 flex flex-wrap gap-1.5"
+  }, r.reasons.map((rs, j) => /*#__PURE__*/React.createElement("span", {
+    key: j,
+    className: `inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs ${rs.ok ? "bg-green-50 text-green-700" : "bg-rose-50 text-rose-600"}`
+  }, rs.ok ? /*#__PURE__*/React.createElement(Check, {
+    size: 11
+  }) : /*#__PURE__*/React.createElement(X, {
+    size: 11
+  }), " ", rs.text))))), recs.length === 0 && /*#__PURE__*/React.createElement("div", {
+    className: "rounded-xl border border-dashed border-slate-300 p-8 text-center text-sm text-slate-400"
+  }, "No candidates in this pace. Try the other branch."), recs.length > 0 && recommended.length === 0 && /*#__PURE__*/React.createElement("div", {
+    className: "rounded-xl border border-dashed border-slate-300 p-6 text-center text-sm text-slate-500"
+  }, "None of these clear your foot's width. See what got filtered out below, or try the other pace.")), rejected.length > 0 && /*#__PURE__*/React.createElement("div", {
+    className: "mt-5 border-t border-slate-100 pt-4"
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setShowRejected(s => !s),
+    className: "inline-flex items-center gap-1 text-sm font-medium text-slate-500 hover:text-slate-700"
+  }, showRejected ? /*#__PURE__*/React.createElement(ChevronUp, {
+    size: 15
+  }) : /*#__PURE__*/React.createElement(ChevronDown, {
+    size: 15
+  }), " Not your fit (", rejected.length, ")"), showRejected && /*#__PURE__*/React.createElement("div", {
+    className: "mt-3 space-y-2"
+  }, rejected.map(r => {
+    const bad = r.reasons.find(x => !x.ok);
+    return /*#__PURE__*/React.createElement("div", {
+      key: r.shoe.id,
+      className: "flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-slate-50 p-3"
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: () => openDetail(r.shoe),
+      className: "text-left text-sm font-medium text-slate-600 hover:underline"
+    }, r.shoe.brand, " ", r.shoe.model), bad && /*#__PURE__*/React.createElement("span", {
+      className: "inline-flex items-center gap-1 rounded-full bg-rose-50 px-2 py-0.5 text-xs text-rose-600"
+    }, /*#__PURE__*/React.createElement(X, {
+      size: 11
+    }), " ", bad.text));
+  }))));
 }
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(/*#__PURE__*/_reactJsxDevRuntime.jsxDEV(ShoeFitApp, {}, void 0, false));</script>
+root.render(/*#__PURE__*/React.createElement(ShoeFitApp, null));</script>
 </body>
 </html>
