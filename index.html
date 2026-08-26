@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Foot-first shoe matching — prototype</title>
-<meta name="description" content="A prototype that measures your foot from a paper trace and recommends running shoes that fit and suit you." />
+<title>The super-shoe selector — prototype</title>
+<meta name="description" content="Measure your foot, say what you're after, and find the super shoe that suits you." />
 <script src="https://cdn.tailwindcss.com"></script>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -19,8 +19,6 @@ const {
   useRef,
   useEffect
 } = React;
-
-/* Inline SVG icons (stand-ins for lucide-react, so the file has no dependencies) */
 function makeIcon(children) {
   return function Icon({
     size = 16,
@@ -123,8 +121,6 @@ const Ruler = makeIcon(/*#__PURE__*/React.createElement(React.Fragment, null, /*
 const Sparkles = makeIcon(/*#__PURE__*/React.createElement("path", {
   d: "m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"
 }));
-
-/* Real persistence: localStorage works on any web host (unlike inside the Claude sandbox) */
 const LS = {
   get(k, fb) {
     try {
@@ -154,7 +150,360 @@ const LS = {
    Approximate demo values, styled after RunRepeat's fields.
    ============================================================ */
 const SHOES = [{
+  id: "metaspeedray",
+  distMin: 3,
+  distMax: 4,
+  brand: "ASICS",
+  model: "Metaspeed Ray",
+  pace: "fast",
+  heelStack: 40,
+  drop: 10,
+  weight: 129,
+  internalWidth: 91.3,
+  toeboxWidth: 69.6,
+  toeboxHeight: 27,
+  softness: 29,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true
+}, {
+  id: "metaspeedsky",
+  distMin: 2,
+  distMax: 4,
+  brand: "ASICS",
+  model: "Metaspeed Sky",
+  pace: "fast",
+  heelStack: 34,
+  drop: 3,
+  weight: 205,
+  internalWidth: 92.2,
+  toeboxWidth: 72.0 /* est */,
+  toeboxHeight: 27 /* est */,
+  softness: 30 /* est */,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true,
+  price: 260
+}, {
+  id: "metaspeedskyparis",
+  distMin: 2,
+  distMax: 4,
+  brand: "ASICS",
+  model: "Metaspeed Sky Paris",
+  pace: "fast",
+  heelStack: 39,
+  drop: 7,
+  weight: 183,
+  internalWidth: 92.3,
+  toeboxWidth: 73.4,
+  toeboxHeight: 30,
+  softness: 37 /* est */,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true,
+  price: 260
+}, {
+  id: "vanishcarbon2",
+  distMin: 1,
+  distMax: 3,
+  brand: "Altra",
+  model: "Vanish Carbon 2",
+  pace: "fast",
+  heelStack: 33,
+  drop: 4,
+  weight: 210,
+  internalWidth: 94.4,
+  toeboxWidth: 80.9,
+  toeboxHeight: 30,
+  softness: 39 /* est */,
+  energy: "high" /* est */,
+  stability: "neutral",
+  carbonPlate: true,
+  price: 220
+}, {
+  id: "rocketx2",
+  distMin: 2,
+  distMax: 4,
+  brand: "HOKA",
+  model: "Rocket X 2",
+  pace: "fast",
+  heelStack: 38,
+  drop: 7,
+  weight: 218,
+  internalWidth: 88.5,
+  toeboxWidth: 70.8,
+  toeboxHeight: 28,
+  softness: 33 /* est */,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true,
+  price: 220
+}, {
+  id: "kipstormelite",
+  distMin: 3,
+  distMax: 5,
+  brand: "KIPRUN",
+  model: "Kipstorm Elite",
+  pace: "fast",
+  heelStack: 38,
+  drop: 7,
+  weight: 218,
+  internalWidth: 95.6,
+  toeboxWidth: 69.7,
+  toeboxHeight: 27,
+  softness: 35,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true,
+  price: 230
+}, {
+  id: "waverebellionpro3",
+  distMin: 3,
+  distMax: 4,
+  brand: "Mizuno",
+  model: "Wave Rebellion Pro 3",
+  pace: "fast",
+  heelStack: 40,
+  drop: 5,
+  weight: 227,
+  internalWidth: 96.6,
+  toeboxWidth: 72.8,
+  toeboxHeight: 25,
+  softness: 33 /* est */,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true,
+  price: 210
+}, {
+  id: "alphafly3",
+  distMin: 3,
+  distMax: 5,
+  brand: "Nike",
+  model: "Alphafly 3",
+  pace: "fast",
+  heelStack: 38,
+  drop: 9,
+  weight: 201,
+  internalWidth: 93.3,
+  toeboxWidth: 75.3,
+  toeboxHeight: 34,
+  softness: 35,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true
+}, {
+  id: "vaporfly4",
+  distMin: 2,
+  distMax: 4,
+  brand: "Nike",
+  model: "Vaporfly 4",
+  pace: "fast",
+  heelStack: 34,
+  drop: 9,
+  weight: 166,
+  internalWidth: 91.7,
+  toeboxWidth: 73.2,
+  toeboxHeight: 27,
+  softness: 35,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true
+}, {
+  id: "cloudboomstrike",
+  distMin: 3,
+  distMax: 4,
+  brand: "On",
+  model: "Cloudboom Strike",
+  pace: "fast",
+  heelStack: 38,
+  drop: 3,
+  weight: 201,
+  internalWidth: 95.6,
+  toeboxWidth: 73.4,
+  toeboxHeight: 27,
+  softness: 34,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true
+}, {
+  id: "deviatenitroelite3",
+  distMin: 2,
+  distMax: 4,
+  brand: "Puma",
+  model: "Deviate Nitro Elite 3",
+  pace: "fast",
+  heelStack: 39,
+  drop: 11,
+  weight: 204,
+  internalWidth: 94.4,
+  toeboxWidth: 69.5,
+  toeboxHeight: 27,
+  softness: 36,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true
+}, {
+  id: "fastrnitroelite3",
+  distMin: 2,
+  distMax: 3,
+  brand: "Puma",
+  model: "Fast-R Nitro Elite 3",
+  pace: "fast",
+  heelStack: 39,
+  drop: 8,
+  weight: 173,
+  internalWidth: 92.9,
+  toeboxWidth: 72.3,
+  toeboxHeight: 26,
+  softness: 36,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true
+}, {
+  id: "endorphinelite",
+  distMin: 3,
+  distMax: 5,
+  brand: "Saucony",
+  model: "Endorphin Elite",
+  pace: "fast",
+  heelStack: 40,
+  drop: 8,
+  weight: 203,
+  internalWidth: 99.6,
+  toeboxWidth: 79.1,
+  toeboxHeight: 28 /* est */,
+  softness: 34 /* est */,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true,
+  price: 280
+}, {
+  id: "endorphinelite2",
+  distMin: 3,
+  distMax: 5,
+  brand: "Saucony",
+  model: "Endorphin Elite 2",
+  pace: "fast",
+  heelStack: 40,
+  drop: 8,
+  weight: 197,
+  internalWidth: 95.6,
+  toeboxWidth: 71.0,
+  toeboxHeight: 30,
+  softness: 22,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true
+}, {
+  id: "endorphinelite3",
+  distMin: 3,
+  distMax: 5,
+  brand: "Saucony",
+  model: "Endorphin Elite 3",
+  pace: "fast",
+  heelStack: 40,
+  drop: 6,
+  weight: 210,
+  internalWidth: 93.8,
+  toeboxWidth: 71.8,
+  toeboxHeight: 28,
+  softness: 16,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true,
+  price: 270
+}, {
+  id: "endorphinpro5",
+  distMin: 2,
+  distMax: 4,
+  brand: "Saucony",
+  model: "Endorphin Pro 5",
+  pace: "fast",
+  heelStack: 37,
+  drop: 9,
+  weight: 215,
+  internalWidth: 95.2,
+  toeboxWidth: 69.3,
+  toeboxHeight: 28,
+  softness: 33,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true,
+  price: 230
+}, {
+  id: "adiospro3",
+  distMin: 3,
+  distMax: 4,
+  brand: "adidas",
+  model: "Adizero Adios Pro 3",
+  pace: "fast",
+  heelStack: 38,
+  drop: 8,
+  weight: 218,
+  internalWidth: 95.5,
+  toeboxWidth: 77.8,
+  toeboxHeight: 28,
+  softness: 38,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true
+}, {
+  id: "primex3",
+  distMin: 4,
+  distMax: 5,
+  brand: "adidas",
+  model: "Adizero Prime X3 Strung",
+  pace: "fast",
+  heelStack: 48,
+  drop: 13,
+  weight: 291,
+  internalWidth: 97.8,
+  toeboxWidth: 73.2,
+  toeboxHeight: 25,
+  softness: 36,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true
+}, {
+  id: "takumisen11",
+  distMin: 1,
+  distMax: 2,
+  brand: "adidas",
+  model: "Adizero Takumi Sen 11",
+  pace: "fast",
+  heelStack: 31,
+  drop: 7,
+  weight: 184,
+  internalWidth: 93.4,
+  toeboxWidth: 71.4,
+  toeboxHeight: 27,
+  softness: 29,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true
+}, {
+  id: "streakfly2",
+  distMin: 1,
+  distMax: 2,
+  brand: "Nike",
+  model: "Streakfly 2",
+  pace: "fast",
+  heelStack: 23,
+  drop: 9,
+  weight: 128,
+  internalWidth: 88.5,
+  toeboxWidth: 65.9,
+  toeboxHeight: 24,
+  softness: 32,
+  energy: "high",
+  stability: "neutral",
+  carbonPlate: true
+},
+// --- plateless / non-carbon super-trainers: the soft landing for slower paces ---
+{
   id: "megablast",
+  distMin: 2,
+  distMax: 5,
   brand: "ASICS",
   model: "Megablast",
   pace: "fast",
@@ -167,593 +516,85 @@ const SHOES = [{
   softness: 31,
   energy: "high",
   stability: "neutral",
-  carbonPlate: false
+  carbonPlate: false,
+  price: 210
 }, {
-  id: "superblast2",
-  brand: "ASICS",
-  model: "Superblast 2",
-  pace: "fast",
-  heelStack: 46,
-  drop: 8,
-  weight: 238,
-  internalWidth: 96,
-  toeboxWidth: 74,
-  toeboxHeight: 26,
-  softness: 34,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "metaspeed",
-  brand: "ASICS",
-  model: "Metaspeed Sky Tokyo",
-  pace: "fast",
-  heelStack: 39,
-  drop: 5,
-  weight: 190,
-  internalWidth: 92,
-  toeboxWidth: 72,
-  toeboxHeight: 23,
-  softness: 30,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: true
-}, {
-  id: "endorphin5",
+  id: "endorphinspeed5",
+  distMin: 2,
+  distMax: 4,
   brand: "Saucony",
   model: "Endorphin Speed 5",
   pace: "fast",
-  heelStack: 38,
-  drop: 8,
-  weight: 230,
-  internalWidth: 95,
-  toeboxWidth: 74,
-  toeboxHeight: 25,
-  softness: 33,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "evosl",
-  brand: "adidas",
-  model: "Adizero EVO SL",
-  pace: "fast",
-  heelStack: 39,
-  drop: 6,
-  weight: 210,
-  internalWidth: 94,
-  toeboxWidth: 73,
-  toeboxHeight: 24,
-  softness: 34,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "machx3",
-  brand: "HOKA",
-  model: "Mach X 3",
-  pace: "fast",
-  heelStack: 39,
-  drop: 5,
-  weight: 250,
-  internalWidth: 96,
-  toeboxWidth: 74,
-  toeboxHeight: 27,
-  softness: 35,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "cloudboommax",
-  brand: "On",
-  model: "Cloudboom Max",
-  pace: "fast",
-  heelStack: 42,
-  drop: 4,
-  weight: 245,
-  internalWidth: 95,
-  toeboxWidth: 73,
-  toeboxHeight: 26,
-  softness: 34,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "novablast5",
-  brand: "ASICS",
-  model: "Novablast 5",
-  pace: "daily",
-  heelStack: 42,
-  drop: 8,
-  weight: 255,
-  internalWidth: 97,
-  toeboxWidth: 75,
-  toeboxHeight: 27,
-  softness: 33,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "peg41",
-  brand: "Nike",
-  model: "Pegasus 41",
-  pace: "daily",
   heelStack: 37,
-  drop: 10,
-  weight: 275,
-  internalWidth: 96,
-  toeboxWidth: 74,
-  toeboxHeight: 25,
-  softness: 38,
-  energy: "mod",
+  drop: 11,
+  weight: 241,
+  internalWidth: 93.8,
+  toeboxWidth: 72.9,
+  toeboxHeight: 29,
+  softness: 45,
+  energy: "high",
   stability: "neutral",
   carbonPlate: false
-}, {
-  id: "ghost16",
-  brand: "Brooks",
-  model: "Ghost 16",
-  pace: "daily",
-  heelStack: 35,
-  drop: 12,
-  weight: 270,
-  internalWidth: 98,
-  toeboxWidth: 76,
-  toeboxHeight: 27,
-  softness: 37,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "clifton9",
-  brand: "HOKA",
-  model: "Clifton 9",
-  pace: "daily",
-  heelStack: 40,
-  drop: 8,
-  weight: 248,
-  internalWidth: 97,
-  toeboxWidth: 75,
+},
+// nylon plate
+{
+  id: "adios9",
+  distMin: 1,
+  distMax: 3,
+  brand: "adidas",
+  model: "Adizero Adios 9",
+  pace: "fast",
+  heelStack: 25,
+  drop: 6,
+  weight: 176,
+  internalWidth: 94.3,
+  toeboxWidth: 70.6,
   toeboxHeight: 28,
-  softness: 36,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "1080v14",
-  brand: "New Balance",
-  model: "1080 v14",
-  pace: "daily",
-  heelStack: 38,
-  drop: 6,
-  weight: 270,
-  internalWidth: 98,
-  toeboxWidth: 76,
-  toeboxHeight: 27,
-  softness: 34,
+  softness: 38,
   energy: "high",
   stability: "neutral",
   carbonPlate: false
 }, {
-  id: "ride17",
-  brand: "Saucony",
-  model: "Ride 17",
-  pace: "daily",
-  heelStack: 35,
-  drop: 8,
-  weight: 269,
-  internalWidth: 96,
-  toeboxWidth: 74,
-  toeboxHeight: 26,
-  softness: 36,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "supernova",
+  id: "boston13",
+  distMin: 3,
+  distMax: 5,
   brand: "adidas",
-  model: "Supernova Rise",
-  pace: "daily",
-  heelStack: 36,
-  drop: 10,
-  weight: 280,
-  internalWidth: 97,
-  toeboxWidth: 75,
-  toeboxHeight: 26,
-  softness: 39,
+  model: "Adizero Boston 13",
+  pace: "fast",
+  heelStack: 34,
+  drop: 6,
+  weight: 254,
+  internalWidth: 97.3,
+  toeboxWidth: 70.6,
+  toeboxHeight: 28,
+  softness: 41,
   energy: "mod",
   stability: "neutral",
   carbonPlate: false
-}, {
-  id: "vaporfly4",
-  brand: "Nike",
-  model: "Vaporfly 4",
-  pace: "fast",
-  heelStack: 40,
-  drop: 8,
-  weight: 196,
-  internalWidth: 93,
-  toeboxWidth: 72,
-  toeboxHeight: 24,
-  softness: 32,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: true
-}, {
-  id: "deviatelite",
-  brand: "Puma",
-  model: "Deviate Nitro Elite 3",
-  pace: "fast",
-  heelStack: 39,
-  drop: 8,
-  weight: 200,
-  internalWidth: 94,
-  toeboxWidth: 73,
-  toeboxHeight: 25,
-  softness: 33,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: true
-}, {
-  id: "rebelv4",
-  brand: "New Balance",
-  model: "Rebel v4",
-  pace: "fast",
-  heelStack: 30,
-  drop: 6,
-  weight: 215,
-  internalWidth: 95,
-  toeboxWidth: 74,
-  toeboxHeight: 26,
-  softness: 35,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "rincon4",
-  brand: "HOKA",
-  model: "Rincon 4",
-  pace: "daily",
-  heelStack: 37,
-  drop: 5,
-  weight: 215,
-  internalWidth: 96,
-  toeboxWidth: 74,
-  toeboxHeight: 25,
-  softness: 36,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "endorphintrainer",
-  brand: "Saucony",
-  model: "Endorphin Trainer",
-  pace: "daily",
-  heelStack: 43,
-  drop: 6,
-  weight: 290,
-  internalWidth: 97,
-  toeboxWidth: 75,
-  toeboxHeight: 27,
-  softness: 34,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "vomero18",
-  brand: "Nike",
-  model: "Vomero 18",
-  pace: "daily",
-  heelStack: 46,
-  drop: 10,
-  weight: 295,
-  internalWidth: 97,
-  toeboxWidth: 75,
-  toeboxHeight: 26,
-  softness: 37,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "alphafly3",
-  brand: "Nike",
-  model: "Alphafly 3",
-  pace: "fast",
-  heelStack: 40,
-  drop: 8,
-  weight: 205,
-  internalWidth: 93,
-  toeboxWidth: 72,
-  toeboxHeight: 24,
-  softness: 31,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: true
-}, {
-  id: "adiospro4",
-  brand: "adidas",
-  model: "Adizero Adios Pro 4",
-  pace: "fast",
-  heelStack: 39,
-  drop: 6,
-  weight: 210,
-  internalWidth: 94,
-  toeboxWidth: 73,
-  toeboxHeight: 24,
-  softness: 32,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: true
-}, {
-  id: "endorphinpro4",
-  brand: "Saucony",
-  model: "Endorphin Pro 4",
-  pace: "fast",
-  heelStack: 36,
-  drop: 8,
-  weight: 215,
-  internalWidth: 95,
-  toeboxWidth: 74,
-  toeboxHeight: 25,
-  softness: 33,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: true
-}, {
-  id: "metaedge",
-  brand: "ASICS",
-  model: "Metaspeed Edge Paris",
-  pace: "fast",
-  heelStack: 39,
-  drop: 8,
-  weight: 185,
-  internalWidth: 92,
-  toeboxWidth: 72,
-  toeboxHeight: 23,
-  softness: 31,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: true
-}, {
-  id: "cielox1",
-  brand: "HOKA",
-  model: "Cielo X1",
-  pace: "fast",
-  heelStack: 40,
-  drop: 7,
-  weight: 248,
-  internalWidth: 95,
-  toeboxWidth: 74,
-  toeboxHeight: 26,
-  softness: 33,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: true
-}, {
-  id: "scelitev4",
-  brand: "New Balance",
-  model: "SC Elite v4",
-  pace: "fast",
-  heelStack: 40,
-  drop: 4,
-  weight: 230,
-  internalWidth: 95,
-  toeboxWidth: 74,
-  toeboxHeight: 25,
-  softness: 34,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: true
-}, {
-  id: "takumisen10",
-  brand: "adidas",
-  model: "Takumi Sen 10",
-  pace: "fast",
-  heelStack: 33,
-  drop: 6,
-  weight: 185,
-  internalWidth: 93,
-  toeboxWidth: 72,
-  toeboxHeight: 23,
-  softness: 34,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: true
-}, {
+},
+// glass/carbon Energy Rods, not a race plate
+
+// --- budget carbon racer ---
+{
   id: "magicspeed4",
+  distMin: 2,
+  distMax: 4,
   brand: "ASICS",
   model: "Magic Speed 4",
   pace: "fast",
-  heelStack: 38,
-  drop: 7,
-  weight: 225,
-  internalWidth: 95,
-  toeboxWidth: 74,
-  toeboxHeight: 25,
-  softness: 34,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: true
-}, {
-  id: "zoomfly6",
-  brand: "Nike",
-  model: "Zoom Fly 6",
-  pace: "fast",
-  heelStack: 40,
-  drop: 8,
-  weight: 265,
-  internalWidth: 95,
-  toeboxWidth: 74,
-  toeboxHeight: 25,
-  softness: 35,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: true
-}, {
-  id: "mach6",
-  brand: "HOKA",
-  model: "Mach 6",
-  pace: "fast",
-  heelStack: 37,
-  drop: 5,
-  weight: 250,
-  internalWidth: 96,
-  toeboxWidth: 74,
-  toeboxHeight: 26,
-  softness: 36,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "invincible3",
-  brand: "Nike",
-  model: "Invincible 3",
-  pace: "daily",
-  heelStack: 40,
-  drop: 9,
-  weight: 300,
-  internalWidth: 97,
-  toeboxWidth: 75,
-  toeboxHeight: 27,
-  softness: 34,
-  energy: "high",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "bondi9",
-  brand: "HOKA",
-  model: "Bondi 9",
-  pace: "daily",
   heelStack: 43,
-  drop: 5,
-  weight: 300,
-  internalWidth: 97,
-  toeboxWidth: 75,
-  toeboxHeight: 27,
-  softness: 37,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "glycerin22",
-  brand: "Brooks",
-  model: "Glycerin 22",
-  pace: "daily",
-  heelStack: 38,
   drop: 10,
-  weight: 280,
-  internalWidth: 98,
-  toeboxWidth: 76,
-  toeboxHeight: 27,
-  softness: 38,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "morev5",
-  brand: "New Balance",
-  model: "Fresh Foam More v5",
-  pace: "daily",
-  heelStack: 46,
-  drop: 4,
-  weight: 290,
-  internalWidth: 98,
-  toeboxWidth: 76,
-  toeboxHeight: 28,
-  softness: 36,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "triumph22",
-  brand: "Saucony",
-  model: "Triumph 22",
-  pace: "daily",
-  heelStack: 37,
-  drop: 10,
-  weight: 290,
-  internalWidth: 97,
-  toeboxWidth: 75,
-  toeboxHeight: 27,
-  softness: 37,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "ultraboost5",
-  brand: "adidas",
-  model: "Ultraboost 5",
-  pace: "daily",
-  heelStack: 40,
-  drop: 10,
-  weight: 300,
-  internalWidth: 96,
-  toeboxWidth: 74,
-  toeboxHeight: 25,
-  softness: 40,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "nimbus27",
-  brand: "ASICS",
-  model: "Gel-Nimbus 27",
-  pace: "daily",
-  heelStack: 42,
-  drop: 8,
-  weight: 300,
-  internalWidth: 97,
-  toeboxWidth: 75,
+  weight: 237,
+  internalWidth: 93.6,
+  toeboxWidth: 74.3,
   toeboxHeight: 26,
-  softness: 36,
+  softness: 32,
   energy: "mod",
   stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "cumulus26",
-  brand: "ASICS",
-  model: "Gel-Cumulus 26",
-  pace: "daily",
-  heelStack: 38,
-  drop: 8,
-  weight: 270,
-  internalWidth: 96,
-  toeboxWidth: 74,
-  toeboxHeight: 26,
-  softness: 37,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "cloudmonster2",
-  brand: "On",
-  model: "Cloudmonster 2",
-  pace: "daily",
-  heelStack: 42,
-  drop: 6,
-  weight: 280,
-  internalWidth: 96,
-  toeboxWidth: 74,
-  toeboxHeight: 25,
-  softness: 36,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
-}, {
-  id: "waverider28",
-  brand: "Mizuno",
-  model: "Wave Rider 28",
-  pace: "daily",
-  heelStack: 38,
-  drop: 12,
-  weight: 275,
-  internalWidth: 96,
-  toeboxWidth: 74,
-  toeboxHeight: 26,
-  softness: 38,
-  energy: "mod",
-  stability: "neutral",
-  carbonPlate: false
+  carbonPlate: true
 }];
+const FLEET_IW = SHOES.reduce((a, s) => a + s.internalWidth, 0) / SHOES.length;
+const FLEET_TB = SHOES.reduce((a, s) => a + s.toeboxWidth, 0) / SHOES.length;
 const PACE = {
   daily: {
     label: "Daily trainers",
@@ -863,6 +704,22 @@ const applyH = (H, [x, y]) => {
 };
 const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
 const A4 = [[0, 0], [210, 0], [210, 297], [0, 297]];
+const PAPERS = {
+  A4: {
+    label: "A4",
+    w: 210,
+    h: 297
+  },
+  A3: {
+    label: "A3",
+    w: 297,
+    h: 420
+  }
+};
+const paperCorners = p => {
+  const s = PAPERS[p] || PAPERS.A4;
+  return [[0, 0], [s.w, 0], [s.w, s.h], [0, s.h]];
+};
 const STEPS = [{
   key: "tl",
   kind: "corner",
@@ -1013,31 +870,117 @@ function calibrate(labels) {
 
 // Deterministic fit of one shoe to one foot, adjusted by learned floors from ratings.
 // Shared by the ranking and the detail view so they never disagree.
+// Foot proportions, not absolutes: a pen trace draws bigger than the foot and
+// RunRepeat's widths are on a different reference, so we compare *shape* not raw mm.
+function footWideness(foot) {
+  const r = foot.ball_width_mm / foot.foot_length_mm; // typically ~0.36–0.42
+  if (r >= 0.41) return "wide";
+  if (r <= 0.37) return "narrow";
+  return "normal";
+}
 function fitInfo(foot, shoe, cal = {}) {
-  const wm = shoe.internalWidth - foot.ball_width_mm;
-  const tm = shoe.toeboxWidth - foot.toe_width_mm;
-  let wR = widthReason(wm),
-    wS = widthScore(wm);
+  const cls = footWideness(foot);
+  const wRel = shoe.internalWidth - FLEET_IW; // vs the super-shoe average
+  const tRel = shoe.toeboxWidth - FLEET_TB;
+  let wS, wR;
+  if (cls === "wide") {
+    if (wRel >= 1.5) {
+      wS = 1;
+      wR = {
+        ok: true,
+        text: "Roomy width for your wider foot"
+      };
+    } else if (wRel <= -1.5) {
+      wS = 0.35;
+      wR = {
+        ok: false,
+        text: "Runs narrow for your wider foot"
+      };
+    } else {
+      wS = 0.75;
+      wR = {
+        ok: true,
+        text: "Average width, workable for you"
+      };
+    }
+  } else if (cls === "narrow") {
+    if (wRel <= 1.5) {
+      wS = 1;
+      wR = {
+        ok: true,
+        text: "Snug width suits your narrow foot"
+      };
+    } else {
+      wS = 0.7;
+      wR = {
+        ok: false,
+        text: "May feel loose on your narrow foot"
+      };
+    }
+  } else {
+    if (wRel <= -3) {
+      wS = 0.6;
+      wR = {
+        ok: false,
+        text: "On the narrow side"
+      };
+    } else {
+      wS = 1;
+      wR = {
+        ok: true,
+        text: "Width suits your foot"
+      };
+    }
+  }
   if (cal.widthFloor && shoe.internalWidth <= cal.widthFloor) {
+    wS = Math.min(wS, 0.3);
     wR = {
       ok: false,
       text: "As narrow as a shoe you found too narrow"
     };
-    wS = Math.min(wS, 0.1);
-  } else if (cal.widthFloor && shoe.internalWidth >= cal.widthFloor + 2 && wR.ok) {
-    wR = {
-      ok: true,
-      text: "Wider than shoes you found too narrow"
-    };
   }
-  let tR = toeReason(tm),
-    tS = toeScore(tm);
+  let tS, tR;
+  if (cls === "wide") {
+    if (tRel <= -1.5) {
+      tS = 0.4;
+      tR = {
+        ok: false,
+        text: "Tight toebox for your foot"
+      };
+    } else if (tRel >= 1.5) {
+      tS = 1;
+      tR = {
+        ok: true,
+        text: "Roomy toebox"
+      };
+    } else {
+      tS = 0.8;
+      tR = {
+        ok: true,
+        text: "Toebox has enough room"
+      };
+    }
+  } else {
+    if (tRel <= -3) {
+      tS = 0.7;
+      tR = {
+        ok: false,
+        text: "Snug toebox"
+      };
+    } else {
+      tS = 1;
+      tR = {
+        ok: true,
+        text: "Good toe room"
+      };
+    }
+  }
   if (cal.toeFloor && shoe.toeboxWidth <= cal.toeFloor) {
+    tS = Math.min(tS, 0.3);
     tR = {
       ok: false,
       text: "Toebox as tight as one you found cramped"
     };
-    tS = Math.min(tS, 0.15);
   }
   const reasons = [wR, tR];
   let hScore = 0.8;
@@ -1054,9 +997,7 @@ function fitInfo(foot, shoe, cal = {}) {
   const score = 0.5 * wS + 0.3 * tS + 0.2 * hScore;
   return {
     reasons,
-    score,
-    wm,
-    tm
+    score
   };
 }
 
@@ -1113,25 +1054,264 @@ function feelInfo(shoe, cal) {
     reasons
   };
 }
-function computeRecs(foot, labels, pace, runnerPace) {
+
+// Parse the runner's free-text into preference signals the engine can use.
+function parsePrefs(text) {
+  const t = (text || "").toLowerCase();
+  const has = re => re.test(t);
+  return {
+    text: text || "",
+    soft: has(/\b(soft|plush|cushion|comfy|comfortable|forgiving)\b/),
+    firm: has(/\b(firm|hard|responsive|snappy|stiff|direct|planted)\b/),
+    wide: has(/\b(wide|roomy|spacious|room|splay)\b/),
+    narrow: has(/\b(narrow|snug|tight|locked|sleek)\b/),
+    light: has(/\b(light|lightweight|feather|nimble)\b/)
+  };
+}
+const PREF_KEYS = ["soft", "firm", "wide", "narrow", "light"];
+const PREF_LABEL = {
+  soft: "soft",
+  firm: "firm",
+  wide: "wide",
+  narrow: "narrow",
+  light: "light"
+};
+
+// Nudge score + add reasons based on the free-text preferences.
+function prefAdjust(shoe, prefs) {
+  let delta = 0;
+  const reasons = [];
+  if (prefs.soft) {
+    if (shoe.softness <= 33) {
+      delta += 0.06;
+      reasons.push({
+        ok: true,
+        text: "Soft ride, as you asked"
+      });
+    } else if (shoe.softness >= 40) {
+      delta -= 0.05;
+      reasons.push({
+        ok: false,
+        text: "Firmer than you asked for"
+      });
+    }
+  }
+  if (prefs.firm) {
+    if (shoe.softness >= 36) {
+      delta += 0.06;
+      reasons.push({
+        ok: true,
+        text: "Firm and direct, as you asked"
+      });
+    } else if (shoe.softness <= 30) {
+      delta -= 0.05;
+      reasons.push({
+        ok: false,
+        text: "Softer than you asked for"
+      });
+    }
+  }
+  if (prefs.wide) {
+    if (shoe.internalWidth >= 95 || shoe.toeboxWidth >= 74) {
+      delta += 0.06;
+      reasons.push({
+        ok: true,
+        text: "Wide fit, as you asked"
+      });
+    } else if (shoe.internalWidth <= 92) {
+      delta -= 0.05;
+      reasons.push({
+        ok: false,
+        text: "Narrower than you asked for"
+      });
+    }
+  }
+  if (prefs.narrow) {
+    if (shoe.internalWidth <= 93) {
+      delta += 0.05;
+      reasons.push({
+        ok: true,
+        text: "Snug fit, as you asked"
+      });
+    } else if (shoe.internalWidth >= 97) {
+      delta -= 0.04;
+      reasons.push({
+        ok: false,
+        text: "Roomier than you asked for"
+      });
+    }
+  }
+  if (prefs.light) {
+    if (shoe.weight <= 200) {
+      delta += 0.06;
+      reasons.push({
+        ok: true,
+        text: "Light on the foot, as you asked"
+      });
+    } else if (shoe.weight >= 240) {
+      delta -= 0.05;
+      reasons.push({
+        ok: false,
+        text: "Heavier than you asked for"
+      });
+    }
+  }
+  return {
+    delta,
+    reasons
+  };
+}
+
+// Weave the positive reasons into one plain-language sentence.
+function buildSentence(rec, isTop) {
+  const goods = rec.reasons.filter(r => r.ok).map(r => r.text.charAt(0).toLowerCase() + r.text.slice(1));
+  const lead = isTop ? "Your best match" : "A strong match";
+  if (!goods.length) return "A solid option for your foot and pace.";
+  const parts = goods.slice(0, 3);
+  const joined = parts.length > 1 ? parts.slice(0, -1).join(", ") + " and " + parts[parts.length - 1] : parts[0];
+  return `${lead}: ${joined}.`;
+}
+const DISTANCES = [{
+  v: "short",
+  t: "Mile to 5K",
+  n: 1
+}, {
+  v: "ten",
+  t: "5K to 10K",
+  n: 2
+}, {
+  v: "half",
+  t: "Half marathon",
+  n: 3
+}, {
+  v: "marathon",
+  t: "Marathon",
+  n: 4
+}, {
+  v: "ultra",
+  t: "Ultra",
+  n: 5
+}];
+const distNum = v => (DISTANCES.find(d => d.v === v) || {}).n;
+const distLabel = v => (DISTANCES.find(d => d.v === v) || {}).t;
+
+// Adjust score + reasons from the structured questions (distance, ground feel, ride feel).
+function answerAdjust(shoe, answers) {
+  let delta = 0;
+  const reasons = [];
+  const d = distNum(answers.distance);
+  if (d) {
+    const lbl = distLabel(answers.distance).toLowerCase();
+    if (d > shoe.distMax) {
+      // Too little shoe for the distance — the one real mismatch, driven by light racers.
+      const gap = d - shoe.distMax;
+      delta -= 0.12 * gap;
+      const light = shoe.weight <= 190;
+      reasons.push({
+        ok: false,
+        text: light ? `Light for the ${lbl} — may not be enough shoe` : `A little underbuilt for the ${lbl}`
+      });
+    } else if (d >= shoe.distMin) {
+      delta += 0.08;
+      reasons.push({
+        ok: true,
+        text: `Well suited to the ${lbl}`
+      });
+    } else {
+      // Over-shoe for a shorter distance is absolutely viable — no penalty.
+      delta += 0.04;
+      reasons.push({
+        ok: true,
+        text: `Plenty of shoe, and fine for the ${lbl}`
+      });
+    }
+  }
+  if (answers.groundFeel === "connected") {
+    if (shoe.heelStack <= 38) {
+      delta += 0.05;
+      reasons.push({
+        ok: true,
+        text: "Low stack, plenty of ground feel"
+      });
+    } else if (shoe.heelStack >= 44) {
+      delta -= 0.05;
+      reasons.push({
+        ok: false,
+        text: "Tall stack, muted ground feel"
+      });
+    }
+  }
+  if (answers.groundFeel === "cushioned") {
+    if (shoe.heelStack >= 42) {
+      delta += 0.05;
+      reasons.push({
+        ok: true,
+        text: "Tall, cushioned stack"
+      });
+    } else if (shoe.heelStack <= 34) {
+      delta -= 0.05;
+      reasons.push({
+        ok: false,
+        text: "Low stack, less cushioned"
+      });
+    }
+  }
+  if (answers.rideFeel === "soft") {
+    if (shoe.softness <= 33) {
+      delta += 0.05;
+      reasons.push({
+        ok: true,
+        text: "Soft ride"
+      });
+    } else if (shoe.softness >= 40) {
+      delta -= 0.05;
+      reasons.push({
+        ok: false,
+        text: "Firmer ride than you want"
+      });
+    }
+  }
+  if (answers.rideFeel === "firm") {
+    if (shoe.softness >= 36) {
+      delta += 0.05;
+      reasons.push({
+        ok: true,
+        text: "Firm, responsive ride"
+      });
+    } else if (shoe.softness <= 30) {
+      delta -= 0.05;
+      reasons.push({
+        ok: false,
+        text: "Softer ride than you want"
+      });
+    }
+  }
+  return {
+    delta,
+    reasons
+  };
+}
+function computeRecs(foot, labels, prefs, answers, runnerPace) {
   const cal = calibrate(labels);
-  const cands = SHOES.filter(s => s.pace === pace && !labels[s.id]);
+  const cands = SHOES.filter(s => !labels[s.id]);
   const scored = cands.map(s => {
     const fit = fitInfo(foot, s, cal);
     const feel = feelInfo(s, cal);
+    const pa = prefAdjust(s, prefs);
+    const aa = answerAdjust(s, answers || {});
     const paceRuledOut = !!s.carbonPlate && typeof runnerPace === "number" && runnerPace > CARBON_CUTOFF;
-    const reasons = [...fit.reasons, ...feel.reasons];
+    const reasons = [...aa.reasons, ...fit.reasons, ...feel.reasons, ...pa.reasons];
     if (paceRuledOut) reasons.unshift({
       ok: false,
       text: "Carbon plate — overkill for your pace"
     });
-    const overall = fit.score * (0.55 + 0.45 * feel.score);
+    const overall = Math.max(0, Math.min(1, fit.score * (0.55 + 0.45 * feel.score) + pa.delta + aa.delta));
     return {
       shoe: s,
       fitScore: fit.score,
       feelScore: feel.score,
       overall,
-      reasons: reasons.slice(0, 4),
+      reasons: reasons.slice(0, 5),
       hasFeel: cal.hasFeel,
       paceRuledOut
     };
@@ -1143,26 +1323,32 @@ function computeRecs(foot, labels, pace, runnerPace) {
 /* ============================================================
    APP
    ============================================================ */
-const FLOW = ["pace", "measure", "library", "recs"];
+const FLOW = ["setup", "measure", "library", "recs"];
 const FLOW_LABEL = {
-  pace: "Pace",
+  setup: "You",
   measure: "Measure",
   library: "Rate",
   recs: "Match"
 };
 function ShoeFitApp() {
   const [screen, setScreen] = useState("landing");
-  const [pace, setPace] = useState(() => LS.get("pace", null));
   const [runnerPace, setRunnerPace] = useState(() => {
     const v = LS.get("runnerPace", 300);
     return typeof v === "number" ? v : 300;
   });
   const [foot, setFoot] = useState(() => LS.get("foot", null));
   const [labels, setLabels] = useState(() => normalizeLabels(LS.get("labels", {})));
+  const [usualSize, setUsualSize] = useState(() => LS.get("usualSize", ""));
+  const [sizeUnit, setSizeUnit] = useState(() => LS.get("sizeUnit", "EU"));
+  const [prefsText, setPrefsText] = useState(() => LS.get("prefsText", ""));
+  const [answers, setAnswers] = useState(() => LS.get("answers", {
+    groundFeel: null,
+    rideFeel: null,
+    distance: null
+  }));
+  const [paper, setPaper] = useState(() => LS.get("paper", "A4"));
   const [query, setQuery] = useState("");
   const [detailShoe, setDetailShoe] = useState(null);
-
-  // Persist to localStorage on change (real cross-session storage on any web host).
   useEffect(() => {
     foot ? LS.set("foot", foot) : LS.del("foot");
   }, [foot]);
@@ -1170,19 +1356,42 @@ function ShoeFitApp() {
     Object.keys(labels).length ? LS.set("labels", labels) : LS.del("labels");
   }, [labels]);
   useEffect(() => {
-    pace ? LS.set("pace", pace) : LS.del("pace");
-  }, [pace]);
-  useEffect(() => {
     LS.set("runnerPace", runnerPace);
   }, [runnerPace]);
+  useEffect(() => {
+    usualSize ? LS.set("usualSize", usualSize) : LS.del("usualSize");
+  }, [usualSize]);
+  useEffect(() => {
+    LS.set("sizeUnit", sizeUnit);
+  }, [sizeUnit]);
+  useEffect(() => {
+    prefsText ? LS.set("prefsText", prefsText) : LS.del("prefsText");
+  }, [prefsText]);
+  const prefs = useMemo(() => parsePrefs(prefsText), [prefsText]);
+  useEffect(() => {
+    LS.set("answers", answers);
+  }, [answers]);
+  useEffect(() => {
+    LS.set("paper", paper);
+  }, [paper]);
+  const setAnswer = (k, v) => setAnswers(a => ({
+    ...a,
+    [k]: a[k] === v ? null : v
+  }));
   const resetAll = () => {
     setFoot(null);
     setLabels({});
-    setPace(null);
     setRunnerPace(300);
+    setUsualSize("");
+    setPrefsText("");
+    setAnswers({
+      groundFeel: null,
+      rideFeel: null,
+      distance: null
+    });
     setQuery("");
     setScreen("landing");
-    ["foot", "labels", "pace", "runnerPace"].forEach(LS.del);
+    ["foot", "labels", "runnerPace", "usualSize", "prefsText", "answers"].forEach(LS.del);
   };
   const setLabel = (id, key, value) => setLabels(l => {
     const cur = l[id] && typeof l[id] === "object" ? {
@@ -1197,8 +1406,8 @@ function ShoeFitApp() {
   });
   const shoes = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return SHOES.filter(s => s.pace === pace).filter(s => !q || `${s.brand} ${s.model}`.toLowerCase().includes(q));
-  }, [pace, query]);
+    return SHOES.filter(s => !q || `${s.brand} ${s.model}`.toLowerCase().includes(q));
+  }, [query]);
   const tagged = Object.values(labels).filter(Boolean).length;
   return /*#__PURE__*/React.createElement("div", {
     className: "mx-auto max-w-2xl p-4 text-slate-800",
@@ -1208,26 +1417,33 @@ function ShoeFitApp() {
   }, screen !== "landing" && /*#__PURE__*/React.createElement(Stepper, {
     current: screen
   }), screen === "landing" && /*#__PURE__*/React.createElement(Landing, {
-    onStart: () => setScreen("pace"),
+    onStart: () => setScreen("setup"),
     canResume: !!foot,
     onResume: () => setScreen("recs"),
     onReset: resetAll
-  }), screen === "pace" && /*#__PURE__*/React.createElement(PaceChoice, {
-    selected: pace,
-    onSelect: setPace,
+  }), screen === "setup" && /*#__PURE__*/React.createElement(Setup, {
+    usualSize: usualSize,
+    setUsualSize: setUsualSize,
+    sizeUnit: sizeUnit,
+    setSizeUnit: setSizeUnit,
+    prefsText: prefsText,
+    setPrefsText: setPrefsText,
+    prefs: prefs,
+    answers: answers,
+    setAnswer: setAnswer,
     runnerPace: runnerPace,
     setRunnerPace: setRunnerPace,
     onBack: () => setScreen("landing"),
     onContinue: () => setScreen("measure")
   }), screen === "measure" && /*#__PURE__*/React.createElement(Measure, {
-    onBack: () => setScreen("pace"),
+    paper: paper,
+    setPaper: setPaper,
+    onBack: () => setScreen("setup"),
     onDone: p => {
       setFoot(p);
       setScreen("library");
     }
   }), screen === "library" && /*#__PURE__*/React.createElement(Library, {
-    pace: pace,
-    setPace: setPace,
     shoes: shoes,
     labels: labels,
     setLabel: setLabel,
@@ -1240,8 +1456,11 @@ function ShoeFitApp() {
   }), screen === "recs" && /*#__PURE__*/React.createElement(Recs, {
     foot: foot,
     labels: labels,
-    pace: pace,
+    prefs: prefs,
+    answers: answers,
     runnerPace: runnerPace,
+    usualSize: usualSize,
+    sizeUnit: sizeUnit,
     onBack: () => setScreen("library"),
     openDetail: setDetailShoe
   }), detailShoe && /*#__PURE__*/React.createElement(ShoeDetail, {
@@ -1285,13 +1504,13 @@ function Landing({
   }, /*#__PURE__*/React.createElement(Footprints, {
     size: 14,
     className: "text-blue-600"
-  }), " Foot-first shoe matching"), /*#__PURE__*/React.createElement("h1", {
+  }), " The super-shoe selector"), /*#__PURE__*/React.createElement("h1", {
     className: "mx-auto max-w-lg text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl"
   }, "Buy the ", /*#__PURE__*/React.createElement("span", {
     className: "text-orange-500"
   }, "right"), " shoe every time"), /*#__PURE__*/React.createElement("p", {
     className: "mx-auto mt-4 max-w-sm text-base text-slate-500"
-  }, "Measure your foot from a paper trace, tell us which shoes have worked, and get picks that actually fit."), /*#__PURE__*/React.createElement("div", {
+  }, "Measure your foot, tell us what you're after, and find the carbon (or plateless) super shoe that actually suits you."), /*#__PURE__*/React.createElement("div", {
     className: "mx-auto mt-8 max-w-xs",
     "aria-hidden": "true"
   }, /*#__PURE__*/React.createElement("svg", {
@@ -1356,16 +1575,39 @@ function LandStep({
   }, icon), label);
 }
 
-/* ---------- pace ---------- */
-function PaceChoice({
-  selected,
-  onSelect,
+/* ---------- setup: size + free text + pace ---------- */
+function Setup({
+  usualSize,
+  setUsualSize,
+  sizeUnit,
+  setSizeUnit,
+  prefsText,
+  setPrefsText,
+  prefs,
+  answers,
+  setAnswer,
   runnerPace,
   setRunnerPace,
   onBack,
   onContinue
 }) {
   const rulesOutCarbon = runnerPace > CARBON_CUTOFF;
+  const detected = PREF_KEYS.filter(k => prefs[k]);
+  const Seg = ({
+    q,
+    k,
+    opts
+  }) => /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 rounded-2xl border border-slate-200 bg-white p-5"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "text-sm font-medium text-slate-800"
+  }, q), /*#__PURE__*/React.createElement("div", {
+    className: "mt-3 flex flex-wrap gap-2"
+  }, opts.map(o => /*#__PURE__*/React.createElement("button", {
+    key: o.v,
+    onClick: () => setAnswer(k, o.v),
+    className: `rounded-lg border px-3 py-2 text-sm font-medium transition ${answers[k] === o.v ? "border-blue-600 bg-blue-50 text-blue-700" : "border-slate-200 text-slate-600 hover:border-slate-300"}`
+  }, o.t))));
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
     onClick: onBack,
     className: "mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700"
@@ -1373,37 +1615,84 @@ function PaceChoice({
     size: 15
   }), " Back"), /*#__PURE__*/React.createElement("h2", {
     className: "text-2xl font-bold tracking-tight text-slate-900"
-  }, "What are these shoes for?"), /*#__PURE__*/React.createElement("p", {
+  }, "Tell us about your running"), /*#__PURE__*/React.createElement("p", {
     className: "mt-1 text-sm text-slate-500"
-  }, "This filters out shoes built for a different job. You can change it anytime."), /*#__PURE__*/React.createElement("div", {
-    className: "mt-6 grid gap-3 sm:grid-cols-2"
-  }, Object.entries(PACE).map(([key, p]) => {
-    const active = selected === key;
-    return /*#__PURE__*/React.createElement("button", {
-      key: key,
-      onClick: () => onSelect(key),
-      className: `rounded-2xl border p-5 text-left transition ${active ? "border-blue-600 bg-blue-50 ring-1 ring-blue-600" : "border-slate-200 bg-white hover:border-slate-300"}`
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "flex items-center justify-between"
-    }, /*#__PURE__*/React.createElement("span", {
-      className: "text-lg font-semibold text-slate-900"
-    }, p.label), /*#__PURE__*/React.createElement("span", {
-      className: `grid h-5 w-5 place-items-center rounded-full border ${active ? "border-blue-600 bg-blue-600" : "border-slate-300"}`
-    }, active && /*#__PURE__*/React.createElement(Check, {
-      size: 12,
-      className: "text-white"
-    }))), /*#__PURE__*/React.createElement("p", {
-      className: "mt-1 text-sm text-slate-500"
-    }, p.blurb), /*#__PURE__*/React.createElement("p", {
-      className: "mt-3 text-xs font-medium text-slate-400"
-    }, p.maps));
-  })), /*#__PURE__*/React.createElement("div", {
+  }, "The more you answer, the more customised your match. Skip anything you're unsure of."), /*#__PURE__*/React.createElement("div", {
     className: "mt-6 rounded-2xl border border-slate-200 bg-white p-5"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "text-sm font-medium text-slate-800"
+  }, "What size do you normally buy?"), /*#__PURE__*/React.createElement("p", {
+    className: "mt-0.5 text-xs text-slate-500"
+  }, "So your foot measurement makes sense in context."), /*#__PURE__*/React.createElement("div", {
+    className: "mt-3 flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "number",
+    inputMode: "decimal",
+    step: "0.5",
+    value: usualSize,
+    onChange: e => setUsualSize(e.target.value),
+    placeholder: "e.g. 42",
+    className: "w-28 rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-slate-400"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "inline-flex rounded-lg border border-slate-200 p-1 text-sm"
+  }, ["EU", "UK", "US"].map(u => /*#__PURE__*/React.createElement("button", {
+    key: u,
+    onClick: () => setSizeUnit(u),
+    className: `rounded-md px-2.5 py-1 font-medium transition ${sizeUnit === u ? "bg-slate-800 text-white" : "text-slate-500 hover:text-slate-700"}`
+  }, u))))), /*#__PURE__*/React.createElement(Seg, {
+    q: "What distance are these for?",
+    k: "distance",
+    opts: DISTANCES
+  }), /*#__PURE__*/React.createElement(Seg, {
+    q: "How much ground feel do you like?",
+    k: "groundFeel",
+    opts: [{
+      v: "connected",
+      t: "Connected / low"
+    }, {
+      v: "balanced",
+      t: "Balanced"
+    }, {
+      v: "cushioned",
+      t: "Cushioned / tall"
+    }]
+  }), /*#__PURE__*/React.createElement(Seg, {
+    q: "Ride feel?",
+    k: "rideFeel",
+    opts: [{
+      v: "soft",
+      t: "Soft"
+    }, {
+      v: "balanced",
+      t: "Balanced"
+    }, {
+      v: "firm",
+      t: "Firm"
+    }]
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 rounded-2xl border border-slate-200 bg-white p-5"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "text-sm font-medium text-slate-800"
+  }, "Anything else, in your words?"), /*#__PURE__*/React.createElement("p", {
+    className: "mt-0.5 text-xs text-slate-500"
+  }, "Optional. For example: \"wide toebox, light for race day\"."), /*#__PURE__*/React.createElement("textarea", {
+    value: prefsText,
+    onChange: e => setPrefsText(e.target.value),
+    rows: 2,
+    className: "mt-3 w-full resize-none rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-slate-400",
+    placeholder: "Wide toebox, light, soft…"
+  }), detected.length > 0 && /*#__PURE__*/React.createElement("div", {
+    className: "mt-2 flex flex-wrap items-center gap-1.5 text-xs text-slate-500"
+  }, /*#__PURE__*/React.createElement("span", null, "Understood:"), detected.map(k => /*#__PURE__*/React.createElement("span", {
+    key: k,
+    className: "rounded-full bg-blue-50 px-2 py-0.5 font-medium text-blue-700"
+  }, PREF_LABEL[k])))), /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 rounded-2xl border border-slate-200 bg-white p-5"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-wrap items-baseline justify-between gap-2"
   }, /*#__PURE__*/React.createElement("label", {
     className: "text-sm font-medium text-slate-800"
-  }, "Roughly how fast do you run these?"), /*#__PURE__*/React.createElement("span", {
+  }, "Roughly how fast do you run?"), /*#__PURE__*/React.createElement("span", {
     className: "tabular-nums text-sm text-slate-900"
   }, fmtPace(runnerPace, "km"), /*#__PURE__*/React.createElement("span", {
     className: "text-xs text-slate-400"
@@ -1421,10 +1710,9 @@ function PaceChoice({
     className: "mt-1 flex justify-between text-xs text-slate-400"
   }, /*#__PURE__*/React.createElement("span", null, "faster"), /*#__PURE__*/React.createElement("span", null, "slower")), /*#__PURE__*/React.createElement("p", {
     className: `mt-3 text-xs ${rulesOutCarbon ? "text-amber-700" : "text-slate-500"}`
-  }, rulesOutCarbon ? "Slower than 4:20/km — carbon-plated race shoes are ruled out as overkill for this pace." : "Quick enough that carbon-plated race shoes stay in the mix.")), /*#__PURE__*/React.createElement("button", {
+  }, rulesOutCarbon ? "Slower than 4:20/km — carbon racers are ruled out as overkill, and you'll be pointed to the plateless super-trainers instead." : "Quick enough that carbon racers stay in the mix.")), /*#__PURE__*/React.createElement("button", {
     onClick: onContinue,
-    disabled: !selected,
-    className: `mt-6 inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition ${selected ? "bg-blue-600 text-white hover:bg-blue-500" : "cursor-not-allowed bg-slate-100 text-slate-400"}`
+    className: "mt-6 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-blue-500"
   }, "Continue ", /*#__PURE__*/React.createElement(ArrowRight, {
     size: 16
   })));
@@ -1432,6 +1720,8 @@ function PaceChoice({
 
 /* ---------- measure ---------- */
 function Measure({
+  paper,
+  setPaper,
   onBack,
   onDone
 }) {
@@ -1478,7 +1768,7 @@ function Measure({
   const byKey = useMemo(() => Object.fromEntries(pts.map(p => [p.key, [p.nx, p.ny]])), [pts]);
   const result = useMemo(() => {
     if (pts.length < STEPS.length) return null;
-    const H = solveHomography(["tl", "tr", "br", "bl"].map(k => byKey[k]), A4);
+    const H = solveHomography(["tl", "tr", "br", "bl"].map(k => byKey[k]), paperCorners(paper));
     if (!H) return {
       error: true
     };
@@ -1489,13 +1779,17 @@ function Measure({
     if (![length, ballW, toeW].every(isFinite)) return {
       error: true
     };
+    // A pen trace draws larger than the foot; RunRepeat's sizes are internal. Trim a
+    // trace-bias allowance off the length before estimating size. Tune if needed.
+    const TRACE_BIAS_MM = 7;
+    const trueLen = Math.max(0, length - TRACE_BIAS_MM);
     return {
       length,
       ballW,
       toeW,
-      eu: Math.round(1.5 * (length / 10 + 1.5) * 2) / 2
+      eu: Math.round(1.5 * (trueLen / 10 + 1.5) * 2) / 2
     };
-  }, [pts, byKey]);
+  }, [pts, byKey, paper]);
   const r1 = n => Math.round(n * 10) / 10;
   const finish = () => {
     const profile = result && !result.error ? {
@@ -1518,9 +1812,21 @@ function Measure({
     className: "text-2xl font-bold tracking-tight text-slate-900"
   }, "Measure your foot"), /*#__PURE__*/React.createElement("p", {
     className: "mt-1 text-sm text-slate-500"
-  }, "Trace your foot on A4, photograph it from above, then tap the points."), phase === "upload" && /*#__PURE__*/React.createElement("div", {
+  }, "Trace your foot on a sheet of paper, photograph it from above, then tap the points."), phase === "upload" && /*#__PURE__*/React.createElement("div", {
     className: "mt-4 rounded-xl border border-slate-200 bg-white p-6"
   }, /*#__PURE__*/React.createElement("div", {
+    className: "mb-4"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "text-sm font-medium text-slate-800"
+  }, "Which paper did you trace on?"), /*#__PURE__*/React.createElement("p", {
+    className: "mt-0.5 text-xs text-slate-500"
+  }, "Pick A3 if your foot doesn't fit on A4 (roughly UK 11 / EU 46 and up)."), /*#__PURE__*/React.createElement("div", {
+    className: "mt-2 inline-flex rounded-lg border border-slate-200 p-1 text-sm"
+  }, Object.keys(PAPERS).map(k => /*#__PURE__*/React.createElement("button", {
+    key: k,
+    onClick: () => setPaper(k),
+    className: `rounded-md px-3 py-1.5 font-medium transition ${paper === k ? "bg-slate-800 text-white" : "text-slate-500 hover:text-slate-700"}`
+  }, PAPERS[k].label)))), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-wrap gap-3"
   }, /*#__PURE__*/React.createElement("label", {
     className: "inline-flex cursor-pointer items-center gap-2 rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700"
@@ -1677,8 +1983,6 @@ function Measure({
 
 /* ---------- library ---------- */
 function Library({
-  pace,
-  setPace,
   shoes,
   labels,
   setLabel,
@@ -1696,15 +2000,9 @@ function Library({
     size: 15
   }), " Back"), /*#__PURE__*/React.createElement("h2", {
     className: "text-2xl font-bold tracking-tight text-slate-900"
-  }, "Your shoe history"), /*#__PURE__*/React.createElement("p", {
+  }, "Super shoes you've worn"), /*#__PURE__*/React.createElement("p", {
     className: "mt-1 text-sm text-slate-500"
-  }, "Rate shoes you've worn — the more detail, the sharper your matches. Tap a name for its full spec."), /*#__PURE__*/React.createElement("div", {
-    className: "mt-4 inline-flex rounded-lg border border-slate-200 bg-white p-1 text-sm"
-  }, Object.entries(PACE).map(([key, p]) => /*#__PURE__*/React.createElement("button", {
-    key: key,
-    onClick: () => setPace(key),
-    className: `rounded-md px-3 py-1.5 font-medium transition ${pace === key ? "bg-slate-800 text-white" : "text-slate-500 hover:text-slate-700"}`
-  }, p.label))), /*#__PURE__*/React.createElement("div", {
+  }, "Rate any you've run in — the more detail, the sharper your matches. Or skip ahead. Tap a name for its full spec."), /*#__PURE__*/React.createElement("div", {
     className: "relative mt-4"
   }, /*#__PURE__*/React.createElement(Search, {
     size: 16,
@@ -1820,7 +2118,7 @@ function ShoeDetail({
     className: "flex items-start justify-between gap-3"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "text-xs font-medium text-slate-400"
-  }, PACE[shoe.pace].label), /*#__PURE__*/React.createElement("h3", {
+  }, shoe.carbonPlate ? "Carbon super shoe" : "Plateless super-trainer"), /*#__PURE__*/React.createElement("h3", {
     className: "text-lg font-semibold text-slate-900"
   }, shoe.brand, " ", shoe.model)), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
@@ -1851,25 +2149,48 @@ function ShoeDetail({
     size: 11
   }), " ", rs.text)))) : /*#__PURE__*/React.createElement("p", {
     className: "mt-4 text-xs text-slate-400"
-  }, "Measure your foot to see how this one fits you."), /*#__PURE__*/React.createElement("p", {
-    className: "mt-4 text-xs text-slate-400"
-  }, "Seed values styled after RunRepeat's fields.")));
+  }, "Measure your foot to see how this one fits you.")));
 }
 
 /* ---------- recommendations ---------- */
+function SizingNote({
+  foot,
+  usualSize,
+  sizeUnit
+}) {
+  if (!usualSize) return null;
+  const measured = foot && foot.approx_eu_size;
+  let msg;
+  if (measured && sizeUnit === "EU") {
+    const diff = measured - parseFloat(usualSize);
+    if (diff >= 0.6) msg = `Your foot measures about EU ${measured}, a little longer than the ${usualSize} you usually buy. Super shoes tend to run snug, so you'll likely want to size up.`;else if (diff <= -0.6) msg = `Your foot measures about EU ${measured}, a touch shorter than the ${usualSize} you usually buy — your usual size, or even half down, should be fine.`;else msg = `Your foot measures about EU ${measured}, in line with the ${usualSize} you usually buy. Note super shoes often run snug, so try before committing.`;
+  } else {
+    msg = `You usually wear ${usualSize} ${sizeUnit}. Super shoes tend to run snug, so consider trying your usual size and half a size up.`;
+  }
+  return /*#__PURE__*/React.createElement("div", {
+    className: "mt-4 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "font-medium text-slate-800"
+  }, "Sizing:"), " ", msg);
+}
 function Recs({
   foot,
   labels,
-  pace,
+  prefs,
+  answers,
   runnerPace,
+  usualSize,
+  sizeUnit,
   onBack,
   openDetail
 }) {
-  const recs = useMemo(() => foot ? computeRecs(foot, labels, pace, runnerPace) : [], [foot, labels, pace, runnerPace]);
+  const recs = useMemo(() => foot ? computeRecs(foot, labels, prefs, answers, runnerPace) : [], [foot, labels, prefs, answers, runnerPace]);
   const hasFeel = recs.some(r => r.hasFeel);
-  const [showRejected, setShowRejected] = useState(false);
-  const recommended = recs.filter(r => r.fitScore >= 0.6 && !r.paceRuledOut);
-  const rejected = recs.filter(r => r.fitScore < 0.6 || r.paceRuledOut);
+  const [showOthers, setShowOthers] = useState(false);
+  const qualified = recs.filter(r => r.fitScore >= 0.6 && !r.paceRuledOut && r.overall >= 0.70);
+  const top = qualified.slice(0, 3);
+  const others = recs.filter(r => !top.includes(r));
+  const standout = top.length === 1 || top.length > 1 && top[0].overall - top[1].overall >= 0.08;
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
     onClick: onBack,
     className: "mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700"
@@ -1879,77 +2200,97 @@ function Recs({
     className: "text-2xl font-bold tracking-tight text-slate-900"
   }, "Your matches"), /*#__PURE__*/React.createElement("p", {
     className: "mt-1 text-sm text-slate-500"
-  }, "Shoes that fit your foot first, ranked by feel from the ones you rated. Tap any shoe for the full breakdown."), !hasFeel && /*#__PURE__*/React.createElement("div", {
+  }, "Your top ", top.length === 1 ? "pick" : top.length + " picks", ", ranked on everything you told us. Tap any shoe for the full breakdown."), /*#__PURE__*/React.createElement(SizingNote, {
+    foot: foot,
+    usualSize: usualSize,
+    sizeUnit: sizeUnit
+  }), !hasFeel && top.length > 0 && /*#__PURE__*/React.createElement("div", {
     className: "mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800"
-  }, "Ranked on fit only so far. Tag a few shoes as \"Fits me\" back in your history to personalise the order by feel."), /*#__PURE__*/React.createElement("div", {
+  }, "Ranked on fit and your answers. Rate a few shoes you've run in (previous step) to personalise by feel too."), /*#__PURE__*/React.createElement("div", {
     className: "mt-4 space-y-3"
-  }, recommended.map((r, i) => /*#__PURE__*/React.createElement("div", {
-    key: r.shoe.id,
-    className: `rounded-xl border bg-white p-4 ${i === 0 ? "border-blue-300 ring-1 ring-blue-200" : "border-slate-200"}`
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "flex items-start justify-between gap-3"
-  }, /*#__PURE__*/React.createElement("div", null, i === 0 && /*#__PURE__*/React.createElement("div", {
-    className: "mb-1 inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700"
-  }, /*#__PURE__*/React.createElement(Trophy, {
-    size: 12
-  }), " Best match"), /*#__PURE__*/React.createElement("button", {
-    onClick: () => openDetail(r.shoe),
-    className: "text-left text-sm font-semibold text-slate-900 hover:underline"
-  }, r.shoe.brand, " ", r.shoe.model)), /*#__PURE__*/React.createElement("div", {
-    className: "text-right"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "text-lg font-semibold tabular-nums text-slate-900"
-  }, Math.round(r.overall * 100), /*#__PURE__*/React.createElement("span", {
-    className: "text-xs font-normal text-slate-400"
-  }, "%")), /*#__PURE__*/React.createElement("div", {
-    className: "text-xs text-slate-400"
-  }, "match"))), /*#__PURE__*/React.createElement("div", {
-    className: "mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-100"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "h-full rounded-full bg-blue-500",
-    style: {
-      width: `${Math.round(r.overall * 100)}%`
-    }
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "mt-3 flex flex-wrap gap-1.5"
-  }, r.reasons.map((rs, j) => /*#__PURE__*/React.createElement("span", {
-    key: j,
-    className: `inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs ${rs.ok ? "bg-green-50 text-green-700" : "bg-rose-50 text-rose-600"}`
-  }, rs.ok ? /*#__PURE__*/React.createElement(Check, {
-    size: 11
-  }) : /*#__PURE__*/React.createElement(X, {
-    size: 11
-  }), " ", rs.text))))), recs.length === 0 && /*#__PURE__*/React.createElement("div", {
+  }, top.map((r, i) => {
+    const isStandout = standout && i === 0;
+    const pct = Math.round(r.overall * 100);
+    return /*#__PURE__*/React.createElement("div", {
+      key: r.shoe.id,
+      className: `rounded-xl border bg-white p-4 ${i === 0 ? "border-blue-300 ring-1 ring-blue-200" : "border-slate-200"}`
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "flex items-start justify-between gap-3"
+    }, /*#__PURE__*/React.createElement("div", null, i === 0 && /*#__PURE__*/React.createElement("div", {
+      className: "mb-1 inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700"
+    }, /*#__PURE__*/React.createElement(Trophy, {
+      size: 12
+    }), " ", isStandout ? "Top recommendation" : "Best match"), /*#__PURE__*/React.createElement("button", {
+      onClick: () => openDetail(r.shoe),
+      className: "block text-left text-base font-semibold text-slate-900 hover:underline"
+    }, r.shoe.brand, " ", r.shoe.model)), /*#__PURE__*/React.createElement("div", {
+      className: "text-right"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "text-lg font-semibold tabular-nums text-slate-900"
+    }, pct, /*#__PURE__*/React.createElement("span", {
+      className: "text-xs font-normal text-slate-400"
+    }, "%")), /*#__PURE__*/React.createElement("div", {
+      className: "text-xs text-slate-400"
+    }, "match"))), /*#__PURE__*/React.createElement("div", {
+      className: "mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-100"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "h-full rounded-full bg-blue-500",
+      style: {
+        width: `${pct}%`
+      }
+    })), /*#__PURE__*/React.createElement("p", {
+      className: "mt-3 text-sm text-slate-600"
+    }, buildSentence(r, i === 0)), /*#__PURE__*/React.createElement("div", {
+      className: "mt-2 flex flex-wrap gap-1.5"
+    }, r.reasons.map((rs, j) => /*#__PURE__*/React.createElement("span", {
+      key: j,
+      className: `inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs ${rs.ok ? "bg-green-50 text-green-700" : "bg-rose-50 text-rose-600"}`
+    }, rs.ok ? /*#__PURE__*/React.createElement(Check, {
+      size: 11
+    }) : /*#__PURE__*/React.createElement(X, {
+      size: 11
+    }), " ", rs.text))), /*#__PURE__*/React.createElement("button", {
+      onClick: () => openDetail(r.shoe),
+      className: "mt-3 inline-flex items-center gap-1 border-t border-slate-100 pt-3 text-xs font-medium text-blue-600 hover:text-blue-700"
+    }, "View full lab spec ", /*#__PURE__*/React.createElement(ArrowRight, {
+      size: 13
+    })));
+  }), recs.length === 0 && /*#__PURE__*/React.createElement("div", {
     className: "rounded-xl border border-dashed border-slate-300 p-8 text-center text-sm text-slate-400"
-  }, "No candidates in this pace. Try the other branch."), recs.length > 0 && recommended.length === 0 && /*#__PURE__*/React.createElement("div", {
+  }, "Measure your foot first to see matches."), recs.length > 0 && top.length === 0 && /*#__PURE__*/React.createElement("div", {
     className: "rounded-xl border border-dashed border-slate-300 p-6 text-center text-sm text-slate-500"
-  }, "None of these clear your foot's width. See what got filtered out below, or try the other pace.")), rejected.length > 0 && /*#__PURE__*/React.createElement("div", {
+  }, "Nothing scored above 70% for this exact brief. Loosen an answer or two, or see the closest options below.")), others.length > 0 && /*#__PURE__*/React.createElement("div", {
     className: "mt-5 border-t border-slate-100 pt-4"
   }, /*#__PURE__*/React.createElement("button", {
-    onClick: () => setShowRejected(s => !s),
+    onClick: () => setShowOthers(s => !s),
     className: "inline-flex items-center gap-1 text-sm font-medium text-slate-500 hover:text-slate-700"
-  }, showRejected ? /*#__PURE__*/React.createElement(ChevronUp, {
+  }, showOthers ? /*#__PURE__*/React.createElement(ChevronUp, {
     size: 15
   }) : /*#__PURE__*/React.createElement(ChevronDown, {
     size: 15
-  }), " Not your fit (", rejected.length, ")"), showRejected && /*#__PURE__*/React.createElement("div", {
+  }), " Others considered (", others.length, ")"), showOthers && /*#__PURE__*/React.createElement("div", {
     className: "mt-3 space-y-2"
-  }, rejected.map(r => {
-    const bad = r.reasons.find(x => !x.ok);
+  }, others.map(r => {
+    const note = r.reasons.find(x => !x.ok) || r.reasons.find(x => x.ok);
     return /*#__PURE__*/React.createElement("div", {
       key: r.shoe.id,
       className: "flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-slate-50 p-3"
     }, /*#__PURE__*/React.createElement("button", {
       onClick: () => openDetail(r.shoe),
       className: "text-left text-sm font-medium text-slate-600 hover:underline"
-    }, r.shoe.brand, " ", r.shoe.model), bad && /*#__PURE__*/React.createElement("span", {
-      className: "inline-flex items-center gap-1 rounded-full bg-rose-50 px-2 py-0.5 text-xs text-rose-600"
-    }, /*#__PURE__*/React.createElement(X, {
+    }, r.shoe.brand, " ", r.shoe.model), /*#__PURE__*/React.createElement("div", {
+      className: "flex items-center gap-2"
+    }, note && /*#__PURE__*/React.createElement("span", {
+      className: `inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs ${note.ok ? "bg-slate-100 text-slate-500" : "bg-rose-50 text-rose-600"}`
+    }, note.ok ? null : /*#__PURE__*/React.createElement(X, {
       size: 11
-    }), " ", bad.text));
+    }), " ", note.text), /*#__PURE__*/React.createElement("span", {
+      className: "tabular-nums text-xs font-medium text-slate-400"
+    }, Math.round(r.overall * 100), "%")));
   }))));
 }
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(/*#__PURE__*/React.createElement(ShoeFitApp, null));</script>
+root.render(/*#__PURE__*/React.createElement(ShoeFitApp, null));
+</script>
 </body>
 </html>
